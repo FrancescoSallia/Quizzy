@@ -81,6 +81,7 @@
         android:layout_marginTop="86dp"
         android:layout_marginEnd="16dp"
         android:clickable="true"
+        android:foreground="@drawable/correct_answer"
         app:cardCornerRadius="6dp"
         app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,6 +147,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:clickable="true"
+        android:foreground="@drawable/wrong_answer"
         app:cardCornerRadius="6dp"
         app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -239,10 +241,15 @@
         android:id="@+id/imageView20"
         android:layout_width="305dp"
         android:layout_height="199dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginBottom="26dp"
         android:alpha="0.2"
         android:src="@drawable/elipse_bg"
-        tools:layout_editor_absoluteX="-205dp"
-        tools:layout_editor_absoluteY="261dp" />
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4"
+        app:layout_constraintVertical_bias="0.628" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
