@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Quizzy</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="question">Question</string>
+    <string name="next">Next</string>
+    <string name="category_title_MuicalsTheaters"><![CDATA[Musicals & Theatres]]></string>
+    <string name="music_theater_title"><![CDATA[Musical & Theater]]></string>
+    <string name="science_and_nature"><![CDATA[Science & Nature]]></string>
+</resources>

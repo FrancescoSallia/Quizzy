@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">#485CD5</color>
+    <color name="primary_text">#001CFF</color>
+    <color name="sport_card_color">#E91E63</color>
+    <color name="History_card_color">#F44336</color>
+    <color name="Mathe_card_color">#0064FA</color>
+    <color name="allgm_wissen_card_color">#CDDC39</color>
+    <color name="Kunst_card_color">#CDDC39</color>
+</resources>
