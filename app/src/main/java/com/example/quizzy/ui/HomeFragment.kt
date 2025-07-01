@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ScrollView
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentHomeBinding
 import kotlin.getValue
 
 class HomeFragment : Fragment() {
 
-    lateinit var vb: FragmentHomeBinding
+   private lateinit var vb: FragmentHomeBinding
 //    private val viewModel: MainViewModel by activityViewModels()
 
 
@@ -42,12 +43,7 @@ class HomeFragment : Fragment() {
 
             // 2. Parallax-Effekt oder mitziehendes Verhalten
             header.translationY = scrollY * 0.5f
-//
-//        // 3. Optional: wenn du Scale oder andere Animation willst:
-//         header.scaleX = 1 - (scrollY / 10000f).coerceIn(0f, 0.2f)
 
-//            header.scaleX = 1f
-//         header.scaleY = 1 - (scrollY / 10000f).coerceIn(0f, 0.2f)
 
         }
     }
