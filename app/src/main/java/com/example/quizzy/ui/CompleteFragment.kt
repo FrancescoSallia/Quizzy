@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentCompleteBinding
+import kotlin.getValue
 
 class CompleteFragment : Fragment() {
+//    private val args: CompleteFragmentArgs by navArgs()
+
     private lateinit var vb: FragmentCompleteBinding
 
 

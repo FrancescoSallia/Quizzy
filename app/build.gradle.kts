@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.navigation.safe.args)
 }
 
 android {
@@ -40,6 +41,9 @@ android {
 }
 
 dependencies {
+
+//    implementation("androidx.navigation:navigation-safe-args-gradle-plugin:2.9.0")
+
 
     //Coil
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.2.0")

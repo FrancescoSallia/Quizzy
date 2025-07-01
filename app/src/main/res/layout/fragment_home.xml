@@ -151,6 +151,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -197,6 +198,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -250,6 +252,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -296,6 +299,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -349,6 +353,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -395,6 +400,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -448,6 +454,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -494,6 +501,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -547,6 +555,7 @@
                     android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
@@ -591,8 +600,9 @@
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_margin="16dp"
-                    android:backgroundTint="@color/background"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/background"
+                    android:clickable="true"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
