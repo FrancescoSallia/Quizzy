@@ -34,6 +34,10 @@ class MainViewModel() : ViewModel() {
     val currentQuestion: LiveData<Result?>
         get() = _currentQuestion
 
+    private val _currentIndexProgressivBar = MutableLiveData<Int>()
+    val currentIndexProgressivBar: LiveData<Int>
+    get() = _currentIndexProgressivBar
+
 
     fun getRandomQuizes(){
         viewModelScope.launch {
@@ -42,6 +46,7 @@ class MainViewModel() : ViewModel() {
                 _getQuestions.postValue(quizFromApi.results)
                 currentIndex = 0
                 _currentQuestion.postValue(quizFromApi.results[currentIndex])
+                _currentIndexProgressivBar.postValue(currentIndex)
             } catch (e: Exception) {
                 Log.e("error", "fun getRandomQuizes(viewModel): ${e.message}")
             }
@@ -78,6 +83,7 @@ class MainViewModel() : ViewModel() {
             if (currentIndex + 1 < questions.size) {
                 currentIndex++
                 _currentQuestion.postValue(questions[currentIndex])
+                _currentIndexProgressivBar.postValue(currentIndex)
             } else {
                 navigateToCompletedFragment()
             }
@@ -88,6 +94,7 @@ class MainViewModel() : ViewModel() {
         _getQuestions.value = null
         _currentQuestion.value = null
         _randomQuizes.value = null
+        _currentIndexProgressivBar.value = 0
     }
 
 

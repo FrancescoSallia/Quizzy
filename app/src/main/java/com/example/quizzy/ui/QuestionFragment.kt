@@ -32,6 +32,14 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Max setzen basierend auf Gesamtfragen
+        vb.progressBar.max = args.quizObject.size
+
+        // Beobachte den aktuellen Index und setze Fortschritt
+        viewModel.currentIndexProgressivBar.observe(viewLifecycleOwner) { index ->
+            vb.progressBar.progress = index + 1 // +1, weil Index bei 0 startet
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             //back button vom handy kann jetzt nicht wieder zurück navigieren!
         }
