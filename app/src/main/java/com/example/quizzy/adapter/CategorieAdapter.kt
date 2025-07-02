@@ -2,13 +2,18 @@ package com.example.quizzy.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.example.quizzy.R
 import com.example.quizzy.databinding.CategoryItemBinding
-import com.example.quizzy.model.Quiz
+import com.example.quizzy.model.Result
+import com.example.quizzy.model.TriviaCategory
+import com.example.quizzy.viewModel.MainViewModel
+
 
 class CategorieAdapter(
-    var database: List<Quiz>
+    var database: List<TriviaCategory>,
+    val viewModel: MainViewModel
 
 ): RecyclerView.Adapter<CategorieAdapter.CategorieViewHolder>() {
     inner class CategorieViewHolder(val binding: CategoryItemBinding): RecyclerView.ViewHolder(binding.root)
@@ -30,7 +35,9 @@ class CategorieAdapter(
 
      val quiz = database[position]
 
-
-
+        holder.binding.tvCategorieName.text = quiz.name
+        holder.binding.ivCategorieIcon.load(R.drawable.atom) {
+            crossfade(true)
+        }
     }
 }
