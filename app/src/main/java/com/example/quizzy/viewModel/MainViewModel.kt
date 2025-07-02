@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 class MainViewModel() : ViewModel() {
 
     private var currentIndex = 0
+    var rightAnswerClicked = 0
+
 
     private val _randomQuizes = MutableLiveData<List<Result>>()
     val randomQuizes: LiveData<List<Result>>
