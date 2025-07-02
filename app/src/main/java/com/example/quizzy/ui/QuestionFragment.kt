@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.quizzy.databinding.FragmentQuestionBinding
+import com.example.quizzy.viewModel.MainViewModel
 
 class QuestionFragment : Fragment() {
     private lateinit var vb: FragmentQuestionBinding
     private val args: QuestionFragmentArgs by navArgs()
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,44 +27,45 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       val questionList = args.quizObject.toList()
-        val question = questionList[0]
+        viewModel.currentQuestion.observe(viewLifecycleOwner) { currentQuestion ->
+            val answerList: MutableList<String> = currentQuestion.incorrectAnswers.toMutableList()
+            answerList.add(currentQuestion.correctAnswer)
 
-        val answerList: MutableList<String> = question.incorrectAnswers.toMutableList()
-        answerList.add(question.correctAnswer)
+            answerList.shuffled()
 
-        answerList.shuffled()
-
-
-        vb.tvQuestion.text = question.question
+            vb.tvQuestion.text = currentQuestion.question
 
 
-        // Setze Antworten nur wenn vorhanden
-        val answerViews = listOf(
-            vb.tvAnswerOne,
-            vb.tvAnswerTwo,
-            vb.tvAnswerThree,
-            vb.tvAnswerFour
-        )
+            // Setze Antworten nur wenn vorhanden
+            val answerViews = listOf(
+                vb.tvAnswerOne,
+                vb.tvAnswerTwo,
+                vb.tvAnswerThree,
+                vb.tvAnswerFour
+            )
 
-        for (i in answerViews.indices) {
-            if (i < answerList.size) {
-                answerViews[i].visibility = View.VISIBLE
-                answerViews[i].text = answerList[i]
-            } else {
-                answerViews[i].visibility = View.GONE
-                vb.cvAnswerThreeVisibility.visibility = View.GONE
-                vb.cvAnswerFourVisibility.visibility = View.GONE
+            for (i in answerViews.indices) {
+                if (i < answerList.size) {
+                    answerViews[i].visibility = View.VISIBLE
+                    answerViews[i].text = answerList[i]
+                } else {
+                    answerViews[i].visibility = View.GONE
+                    vb.cvAnswerThreeVisibility.visibility = View.GONE
+                    vb.cvAnswerFourVisibility.visibility = View.GONE
+                }
             }
+
+            vb.btnContinue.setOnClickListener {
+
+                viewModel.showNextQuestion(){
+                    findNavController()
+                        .navigate(
+                            QuestionFragmentDirections
+                                .actionQuestionFragmentToCompleteFragment()
+                        )
+                }
+            }
+
         }
-
-
-
-//        vb.tvAnswerOne.text = answerList[0]
-//        vb.tvAnswerTwo.text = answerList[1]
-//        vb.tvAnswerThree.text = answerList[2]
-//        vb.tvAnswerFour.text = answerList[3]
-
-
     }
 }

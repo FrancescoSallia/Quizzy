@@ -14,6 +14,8 @@ import kotlinx.coroutines.launch
 
 class MainViewModel() : ViewModel() {
 
+    private var currentIndex = 0
+
     private val _randomQuizes = MutableLiveData<List<Result>>()
     val randomQuizes: LiveData<List<Result>>
     get() = _randomQuizes
@@ -26,6 +28,10 @@ class MainViewModel() : ViewModel() {
     val getQuestions: LiveData<List<Result>>
         get() = _getQuestions
 
+    private val _currentQuestion = MutableLiveData<Result>()
+    val currentQuestion: LiveData<Result>
+        get() = _currentQuestion
+
 
     fun getRandomQuizes(){
         viewModelScope.launch {
@@ -37,6 +43,7 @@ class MainViewModel() : ViewModel() {
             }
         }
     }
+
 
     fun getCategories() {
         viewModelScope.launch {
@@ -54,8 +61,22 @@ class MainViewModel() : ViewModel() {
             try {
                 val questionsObjectApi = OpenTriviaAPI.retrofitService.getQuizQuestions(categorieInt = categorieInt )
                 _getQuestions.postValue(questionsObjectApi.results)
+                currentIndex = 0
+                _currentQuestion.postValue(questionsObjectApi.results[currentIndex])
             } catch (e: Exception) {
                 Log.e("error", "fun getQuizQuestions(viewModel): ${e.message}")
+            }
+        }
+    }
+
+
+    fun showNextQuestion(navigateToCompletedFragment: () -> Unit) {
+        _getQuestions.value?.let { questions ->
+            if (currentIndex + 1 < questions.size) {
+                currentIndex++
+                _currentQuestion.postValue(questions[currentIndex])
+            } else {
+                navigateToCompletedFragment()
             }
         }
     }

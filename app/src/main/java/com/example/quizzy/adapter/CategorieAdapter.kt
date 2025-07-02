@@ -2,13 +2,11 @@ package com.example.quizzy.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.quizzy.data.repository.getCategoryDrawable
 import com.example.quizzy.databinding.CategoryItemBinding
 import com.example.quizzy.model.TriviaCategory
-import com.example.quizzy.ui.HomeFragmentDirections
 import com.example.quizzy.viewModel.MainViewModel
 
 
@@ -42,7 +40,7 @@ class CategorieAdapter(
         }
 
         holder.binding.cvClickable.setOnClickListener {
-            viewModel.getQuizQuestions(quiz.id) // ← nur laden, NICHT navigieren
+            viewModel.getQuizQuestions(quiz.id)
         }
     }
 }
