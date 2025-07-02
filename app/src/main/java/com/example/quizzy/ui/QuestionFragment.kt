@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
@@ -30,6 +31,10 @@ class QuestionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            //back button vom handy kann jetzt nicht wieder zurück navigieren!
+        }
 
         viewModel.currentQuestion.observe(viewLifecycleOwner) { currentQuestion ->
             val answerList: MutableList<String> = currentQuestion.incorrectAnswers.toMutableList()
@@ -104,7 +109,7 @@ class QuestionFragment : Fragment() {
             vb.btnContinue.setOnClickListener {
                 viewModel.showNextQuestion {
                     findNavController().navigate(
-                        QuestionFragmentDirections.actionQuestionFragmentToCompleteFragment()
+                        QuestionFragmentDirections.actionQuestionFragmentToCompleteFragment(rightAnswers = viewModel.rightAnswerClicked, questionsAmount = args.quizObject.size )
                     )
                 }
 

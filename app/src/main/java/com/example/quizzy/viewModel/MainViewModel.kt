@@ -26,8 +26,8 @@ class MainViewModel() : ViewModel() {
     val categories: LiveData<List<TriviaCategory>>
     get() = _categories
 
-    private val _getQuestions = MutableLiveData<List<Result>>()
-    val getQuestions: LiveData<List<Result>>
+    private val _getQuestions = MutableLiveData<List<Result>?>()
+    val getQuestions: LiveData<List<Result>?>
         get() = _getQuestions
 
     private val _currentQuestion = MutableLiveData<Result>()
@@ -45,7 +45,6 @@ class MainViewModel() : ViewModel() {
             }
         }
     }
-
 
     fun getCategories() {
         viewModelScope.launch {
@@ -81,6 +80,10 @@ class MainViewModel() : ViewModel() {
                 navigateToCompletedFragment()
             }
         }
+    }
+
+    fun resetGetQuestions() {
+        _getQuestions.value = null
     }
 
 
