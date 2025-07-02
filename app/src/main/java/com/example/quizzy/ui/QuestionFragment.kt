@@ -37,7 +37,7 @@ class QuestionFragment : Fragment() {
         }
 
         viewModel.currentQuestion.observe(viewLifecycleOwner) { currentQuestion ->
-            val answerList: MutableList<String> = currentQuestion.incorrectAnswers.toMutableList()
+            val answerList: MutableList<String> = currentQuestion?.incorrectAnswers!!.toMutableList()
             answerList.add(currentQuestion.correctAnswer)
             val shuffledAnswers = answerList.shuffled()
 

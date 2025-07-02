@@ -59,7 +59,20 @@ class HomeFragment : Fragment() {
                 }
             }
 
+        viewModel.randomQuizes.observe(viewLifecycleOwner) { randomQuizList ->
+            if (randomQuizList != null && randomQuizList.isNotEmpty()) {
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToQuestionFragment(randomQuizList.toTypedArray())
+                findNavController().navigate(action)
+            }
+        }
+        vb.cvBtnRandomQuiz.setOnClickListener {
+            viewModel.getRandomQuizes()
+        }
+
         viewModel.getCategories()
-//        viewModel.getRandomQuizes()
+
+
+
     }
 }

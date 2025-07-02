@@ -18,8 +18,8 @@ class MainViewModel() : ViewModel() {
     var rightAnswerClicked = 0
 
 
-    private val _randomQuizes = MutableLiveData<List<Result>>()
-    val randomQuizes: LiveData<List<Result>>
+    private val _randomQuizes = MutableLiveData<List<Result>?>()
+    val randomQuizes: LiveData<List<Result>?>
     get() = _randomQuizes
 
     private val _categories = MutableLiveData<List<TriviaCategory>>()
@@ -30,8 +30,8 @@ class MainViewModel() : ViewModel() {
     val getQuestions: LiveData<List<Result>?>
         get() = _getQuestions
 
-    private val _currentQuestion = MutableLiveData<Result>()
-    val currentQuestion: LiveData<Result>
+    private val _currentQuestion = MutableLiveData<Result?>(null)
+    val currentQuestion: LiveData<Result?>
         get() = _currentQuestion
 
 
@@ -39,7 +39,9 @@ class MainViewModel() : ViewModel() {
         viewModelScope.launch {
             try {
                 val quizFromApi = OpenTriviaAPI.retrofitService.getRandomQuizes()
-                _randomQuizes.postValue(quizFromApi.results)
+                _getQuestions.postValue(quizFromApi.results)
+                currentIndex = 0
+                _currentQuestion.postValue(quizFromApi.results[currentIndex])
             } catch (e: Exception) {
                 Log.e("error", "fun getRandomQuizes(viewModel): ${e.message}")
             }
@@ -84,6 +86,8 @@ class MainViewModel() : ViewModel() {
 
     fun resetGetQuestions() {
         _getQuestions.value = null
+        _currentQuestion.value = null
+        _randomQuizes.value = null
     }
 
 
