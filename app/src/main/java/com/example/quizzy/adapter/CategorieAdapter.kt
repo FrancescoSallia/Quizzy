@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.quizzy.R
+import com.example.quizzy.data.repository.getCategoryDrawable
 import com.example.quizzy.databinding.CategoryItemBinding
 import com.example.quizzy.model.Result
 import com.example.quizzy.model.TriviaCategory
@@ -36,7 +37,7 @@ class CategorieAdapter(
      val quiz = database[position]
 
         holder.binding.tvCategorieName.text = quiz.name
-        holder.binding.ivCategorieIcon.load(R.drawable.atom) {
+        holder.binding.ivCategorieIcon.load(getCategoryDrawable(categoryId = quiz.id)) {
             crossfade(true)
         }
     }

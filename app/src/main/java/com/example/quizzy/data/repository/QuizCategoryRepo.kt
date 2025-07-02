@@ -2,7 +2,7 @@ package com.example.quizzy.data.repository
 
 import com.example.quizzy.R
 
-fun getCategoryDrawable(categoryId: Int, categoryName: String? = null): Int {
+fun getCategoryDrawable(categoryId: Int): Int {
     return when (categoryId) {
         9 -> R.drawable.denken       // General Knowledge
         10 -> R.drawable.buch   // Entertainment: Books
@@ -25,9 +25,9 @@ fun getCategoryDrawable(categoryId: Int, categoryName: String? = null): Int {
         27 -> R.drawable.animals                // Animals
         28 -> R.drawable.vehicles               // Vehicles
         29 -> R.drawable.entertainment_comics  // Entertainment: Comics
-        30 -> R.drawable.science_gadgets        // Science: Gadgets
-        31 -> R.drawable.entertainment_anime    // Entertainment: Japanese Anime & Manga
+        30 -> R.drawable.gadgets        // Science: Gadgets
+        31 -> R.drawable.anime    // Entertainment: Japanese Anime & Manga
         32 -> R.drawable.entertainment_cartoon  // Entertainment: Cartoon & Animations
-        else -> R.drawable.default_category     // Default fallback image
+        else -> R.drawable.quiz_icon     // Default fallback image
     }
 }
