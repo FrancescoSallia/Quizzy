@@ -22,6 +22,10 @@ class MainViewModel() : ViewModel() {
     val categories: LiveData<List<TriviaCategory>>
     get() = _categories
 
+    private val _getQuestions = MutableLiveData<List<Result>>()
+    val getQuestions: LiveData<List<Result>>
+        get() = _getQuestions
+
 
     fun getRandomQuizes(){
         viewModelScope.launch {
@@ -41,6 +45,17 @@ class MainViewModel() : ViewModel() {
                 _categories.postValue(categoriesFromApi.triviaCategories)
             } catch (e: Exception) {
                 Log.e("error", "fun getCategories(viewModel): ${e.message}")
+            }
+        }
+    }
+
+    fun getQuizQuestions(categorieInt: Int) {
+        viewModelScope.launch {
+            try {
+                val questionsObjectApi = OpenTriviaAPI.retrofitService.getQuizQuestions(categorieInt = categorieInt )
+                _getQuestions.postValue(questionsObjectApi.results)
+            } catch (e: Exception) {
+                Log.e("error", "fun getQuizQuestions(viewModel): ${e.message}")
             }
         }
     }

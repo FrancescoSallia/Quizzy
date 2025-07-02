@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_questionFragment_to_completeFragment"
             app:destination="@id/completeFragment" />
+        <argument
+            android:name="quizObject"
+            app:argType="com.example.quizzy.model.Result[]" />
     </fragment>
     <fragment
         android:id="@+id/completeFragment"

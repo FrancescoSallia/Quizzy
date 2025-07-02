@@ -44,9 +44,6 @@ interface OpenTriviaAPIService {
     @GET("api.php")
     suspend fun getQuizQuestions(@Query("amount")amountQuiz: Int = 5, @Query("category") categorieInt: Int): Quiz
 
-
-//    @GET("search.php")
-//    suspend fun searchMeal(@Query("s") mealName: String): MealResponse
 }
 
 object OpenTriviaAPI {

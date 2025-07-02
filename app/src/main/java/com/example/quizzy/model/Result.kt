@@ -1,7 +1,11 @@
 package com.example.quizzy.model
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializer
 
+@Parcelize
 data class Result(
     val category: String,
     @param:Json(name = "correct_answer")
@@ -11,4 +15,4 @@ data class Result(
     val incorrectAnswers: List<String>,
     val question: String,
     val type: String
-)
+): Parcelable
