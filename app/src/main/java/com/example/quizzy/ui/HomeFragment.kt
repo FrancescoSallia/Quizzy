@@ -51,6 +51,14 @@ class HomeFragment : Fragment() {
             vb.rvCategories.adapter = CategorieAdapter(database = quiz, viewModel)
         }
 
+            viewModel.getQuestions.observe(viewLifecycleOwner) { questionList ->
+                if (questionList != null && questionList.isNotEmpty()) {
+                    val action = HomeFragmentDirections
+                        .actionHomeFragmentToQuestionFragment(questionList.toTypedArray())
+                    findNavController().navigate(action)
+                }
+            }
+
         viewModel.getCategories()
 //        viewModel.getRandomQuizes()
     }

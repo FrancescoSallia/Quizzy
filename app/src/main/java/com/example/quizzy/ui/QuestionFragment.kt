@@ -26,23 +26,40 @@ class QuestionFragment : Fragment() {
        val questionList = args.quizObject.toList()
         val question = questionList[0]
 
-        val answerList: MutableList<String> = mutableListOf()
-        var i = 0
-
-        for (answer in questionList) {
-            answerList.add(answer.incorrectAnswers[i])
-            i++
-        }
+        val answerList: MutableList<String> = question.incorrectAnswers.toMutableList()
         answerList.add(question.correctAnswer)
-
-        vb.tvQuestion.text = question.question
 
         answerList.shuffled()
 
-        vb.tvAnswerOne.text = answerList[0]
-        vb.tvAnswerTwo.text = answerList[1]
-        vb.tvAnswerThree.text = answerList[2]
-        vb.tvAnswerFour.text = answerList[3]
+
+        vb.tvQuestion.text = question.question
+
+
+        // Setze Antworten nur wenn vorhanden
+        val answerViews = listOf(
+            vb.tvAnswerOne,
+            vb.tvAnswerTwo,
+            vb.tvAnswerThree,
+            vb.tvAnswerFour
+        )
+
+        for (i in answerViews.indices) {
+            if (i < answerList.size) {
+                answerViews[i].visibility = View.VISIBLE
+                answerViews[i].text = answerList[i]
+            } else {
+                answerViews[i].visibility = View.GONE
+                vb.cvAnswerThreeVisibility.visibility = View.GONE
+                vb.cvAnswerFourVisibility.visibility = View.GONE
+            }
+        }
+
+
+
+//        vb.tvAnswerOne.text = answerList[0]
+//        vb.tvAnswerTwo.text = answerList[1]
+//        vb.tvAnswerThree.text = answerList[2]
+//        vb.tvAnswerFour.text = answerList[3]
 
 
     }

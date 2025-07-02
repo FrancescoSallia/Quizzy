@@ -41,16 +41,8 @@ class CategorieAdapter(
             crossfade(true)
         }
 
-        holder.itemView.rootView.setOnClickListener {
-            viewModel.getQuizQuestions(quiz.id) //TODO: Schau hier weiter, ob vllt die api nicht funktioniert richtig warum es ein Null exception hat
-
-            holder.binding.root.findNavController()
-                .navigate(
-                    HomeFragmentDirections
-                        .actionHomeFragmentToQuestionFragment(
-                        viewModel.getQuestions.value!!.toTypedArray()  //Navigiert zum QuestionFragment, liste wird als array per NavArgs überreicht!
-                    )
-                )
+        holder.binding.cvClickable.setOnClickListener {
+            viewModel.getQuizQuestions(quiz.id) // ← nur laden, NICHT navigieren
         }
     }
 }
