@@ -16,6 +16,9 @@ class MainViewModel() : ViewModel() {
     private var currentIndex = 0
     var rightAnswerClicked = 0
 
+    var counterForAnimation = 1
+
+
 
     private val _randomQuizes = MutableLiveData<List<Result>?>()
     val randomQuizes: LiveData<List<Result>?>
@@ -84,7 +87,8 @@ class MainViewModel() : ViewModel() {
                 _currentQuestion.postValue(questions[currentIndex])
                 _currentIndexProgressivBar.postValue(currentIndex)
             } else {
-                navigateToCompletedFragment()
+                counterForAnimation = 1
+                navigateToCompletedFragment() // Navigiert weiter wenn alle fragen durch sind
             }
         }
     }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
@@ -50,6 +51,7 @@ class QuestionFragment : Fragment() {
             answerList.add(currentQuestion.correctAnswer)
             val shuffledAnswers = answerList.shuffled()
 
+            //The Question
             vb.tvQuestion.text = currentQuestion.question
 
             val answerViews = listOf(
@@ -115,12 +117,25 @@ class QuestionFragment : Fragment() {
                 }
             }
 
+
             vb.btnContinue.setOnClickListener {
+                val animFromTop = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_top)
+
+                if (viewModel.counterForAnimation != args.quizObject.size) {
+                    vb.tvQuestion.startAnimation(animFromTop)
+                    vb.tvAnswerOne.startAnimation(animFromTop)
+                    vb.tvAnswerTwo.startAnimation(animFromTop)
+                    vb.tvAnswerThree.startAnimation(animFromTop)
+                    vb.tvAnswerFour.startAnimation(animFromTop)
+                    viewModel.counterForAnimation++
+                }
+
                 viewModel.showNextQuestion {
                     findNavController().navigate(
                         QuestionFragmentDirections.actionQuestionFragmentToCompleteFragment(rightAnswers = viewModel.rightAnswerClicked, questionsAmount = args.quizObject.size )
                     )
                 }
+
 
                 // Farben & Button zurücksetzen
                 for (i in cardViews.indices) {
