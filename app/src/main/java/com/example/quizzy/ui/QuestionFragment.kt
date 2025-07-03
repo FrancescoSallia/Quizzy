@@ -132,6 +132,7 @@ class QuestionFragment : Fragment() {
 
                 if (viewModel.counterForAnimation != args.quizObject.size) {
                     vb.tvQuestion.startAnimation(animFromTop)
+                    vb.tvDifficultyLevel.startAnimation(animFromTop)
                     vb.tvAnswerOne.startAnimation(animFromTop)
                     vb.tvAnswerTwo.startAnimation(animFromTop)
                     vb.tvAnswerThree.startAnimation(animFromTop)
