@@ -97,9 +97,10 @@
 
             <TextView
                 android:id="@+id/tv_answer_one"
-                android:layout_width="wrap_content"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:text="Antwort 1"
+                android:textAlignment="center"
                 android:textColor="#F6F2F2"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -132,9 +133,10 @@
 
             <TextView
                 android:id="@+id/tv_answer_two"
-                android:layout_width="wrap_content"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:text="Answer 2"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16.sp"
                 android:textStyle="bold"
@@ -167,9 +169,10 @@
 
             <TextView
                 android:id="@+id/tv_answer_three"
-                android:layout_width="wrap_content"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:text="Answer 3"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16.sp"
                 android:textStyle="bold"
@@ -204,9 +207,10 @@
 
             <TextView
                 android:id="@+id/tv_answer_four"
-                android:layout_width="wrap_content"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:text="Answer 4"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16.sp"
                 android:textStyle="bold"
