@@ -9,4 +9,7 @@
     <color name="Mathe_card_color">#0064FA</color>
     <color name="allgm_wissen_card_color">#CDDC39</color>
     <color name="Kunst_card_color">#CDDC39</color>
+    <color name="easy_Difficulty">#4CAF50</color>
+    <color name="medium_Difficulty">#FB9E3A</color>
+    <color name="hard_Difficulty">#EF2929</color>
 </resources>

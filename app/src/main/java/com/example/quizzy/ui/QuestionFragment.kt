@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.graphics.toColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -53,7 +54,15 @@ class QuestionFragment : Fragment() {
 
             //The Question
             vb.tvQuestion.text = currentQuestion.question
+            vb.tvDifficultyLevel.text = currentQuestion.difficulty
 
+            val colorResId = when(currentQuestion.difficulty.lowercase()) {
+                "easy" -> R.color.easy_Difficulty
+                "medium" -> R.color.medium_Difficulty
+                "hard" -> R.color.hard_Difficulty
+                else -> R.color.black
+            }
+            vb.tvDifficultyLevel.setTextColor(ContextCompat.getColor(requireContext(), colorResId))
             val answerViews = listOf(
                 vb.tvAnswerOne,
                 vb.tvAnswerTwo,
