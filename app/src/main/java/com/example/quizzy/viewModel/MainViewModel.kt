@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quizzy.data.OpenTriviaAPI
-import com.example.quizzy.model.Categorie
 import com.example.quizzy.model.Result
 import com.example.quizzy.model.TriviaCategory
 import kotlinx.coroutines.launch

@@ -1,18 +1,16 @@
 package com.example.quizzy.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ScrollView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.quizzy.R
 import com.example.quizzy.adapter.CategorieAdapter
 import com.example.quizzy.databinding.FragmentHomeBinding
 import com.example.quizzy.viewModel.MainViewModel
-import kotlin.getValue
 
 class HomeFragment : Fragment() {
 
@@ -45,8 +43,8 @@ class HomeFragment : Fragment() {
 
             // 2. Parallax-Effekt oder mitziehendes Verhalten
             header.translationY = scrollY * 0.5f
-
         }
+
         viewModel.categories.observe(viewLifecycleOwner) { quiz ->
             vb.rvCategories.adapter = CategorieAdapter(database = quiz, viewModel)
         }

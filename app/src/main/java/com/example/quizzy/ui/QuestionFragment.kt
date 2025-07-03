@@ -34,6 +34,7 @@ class QuestionFragment : Fragment() {
 
         // Max setzen basierend auf Gesamtfragen
         vb.progressBar.max = args.quizObject.size
+        vb.progressBar.progress = 1
 
         // Beobachte den aktuellen Index und setze Fortschritt
         viewModel.currentIndexProgressivBar.observe(viewLifecycleOwner) { index ->

@@ -11,7 +11,9 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_questionFragment"
-            app:destination="@id/questionFragment" />
+            app:destination="@id/questionFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_bottom" />
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
@@ -23,7 +25,9 @@
             app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_questionFragment_to_completeFragment"
-            app:destination="@id/completeFragment" />
+            app:destination="@id/completeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
         <argument
             android:name="quizObject"
             app:argType="com.example.quizzy.model.Result[]" />
@@ -36,6 +40,8 @@
         <action
             android:id="@+id/action_completeFragment_to_homeFragment"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_top"
             app:popUpTo="@id/questionFragment"
             app:popUpToInclusive="true" />
         <argument
