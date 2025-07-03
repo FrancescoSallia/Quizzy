@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.navigation.safe.args)
     id("kotlin-parcelize")
+    id("kotlin-kapt")
 
 }
 
@@ -44,11 +45,11 @@ android {
 
 dependencies {
 
-//    implementation("androidx.navigation:navigation-safe-args-gradle-plugin:2.9.0")
-
+    //Room-Databse
+    implementation("androidx.room:room-ktx:2.7.2")
+    kapt("androidx.room:room-ktx:2.7.2")
 
     //Coil
-//    implementation("io.coil-kt.coil3:coil-network-okhttp:3.2.0")
     implementation(libs.coil)
 
     //Logger-interceptor

@@ -1,23 +1,39 @@
 package com.example.quizzy.viewModel
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quizzy.data.OpenTriviaAPI
+import com.example.quizzy.data.local.RoomRepository
+import com.example.quizzy.data.local.getDatabase
 import com.example.quizzy.model.Result
 import com.example.quizzy.model.TriviaCategory
+import com.example.quizzy.model.User
 import kotlinx.coroutines.launch
 
 
-class MainViewModel() : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
+
+
+    // region Room-Database
+    private val database = getDatabase(application)
+    private val roomRepository = RoomRepository(database)
+
+    val userList = roomRepository.userList
+
+    fun insertUser(user: User) {
+        viewModelScope.launch {
+            roomRepository.insert(user)
+        }
+    }
+    //endregion
 
     private var currentIndex = 0
     var rightAnswerClicked = 0
-
     var counterForAnimation = 1
-
 
 
     private val _randomQuizes = MutableLiveData<List<Result>?>()
