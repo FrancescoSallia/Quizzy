@@ -127,6 +127,7 @@
         android:id="@+id/btn_Done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/button_style"
         android:clickable="true"
         android:paddingHorizontal="100dp"
@@ -136,10 +137,10 @@
         android:shadowDy="0.5"
         android:shadowRadius="0.5"
         android:text="Abgeschlossen"
+        app:layout_constraintBottom_toTopOf="@+id/imageView21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="563dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"

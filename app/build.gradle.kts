@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.navigation.safe.args)
     id("kotlin-parcelize")
     id("kotlin-kapt")
-
 }
 
 android {
@@ -45,9 +44,10 @@ android {
 
 dependencies {
 
-    //Room-Databse
+    // Room-Datenbank
+    implementation("androidx.room:room-runtime:2.7.2")
     implementation("androidx.room:room-ktx:2.7.2")
-    kapt("androidx.room:room-ktx:2.7.2")
+    kapt("androidx.room:room-compiler:2.7.2")
 
     //Coil
     implementation(libs.coil)

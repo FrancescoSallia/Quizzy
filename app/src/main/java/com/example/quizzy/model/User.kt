@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class User(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int,
-    var rightAnswer: Int,
-    var wrongAnswer: Int
+    @PrimaryKey()
+    var id: Int = 0,
+    var rightAnswerList: List<Int>,
+    var wrongAnswerList: List<Int>
 )
