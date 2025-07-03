@@ -8,6 +8,9 @@ Was ist Quizzy?
 
 Quizzy ist eine interaktive Quiz-App, die entwickelt wurde, um dein Wissen auf spielerische und spannende Weise herauszufordern und zu erweitern. Egal, ob du ein Quiz-Enthusiast bist, der sein Fachwissen testen möchte, oder jemand, der einfach nur neugierig ist und täglich etwas Neues lernen möchte – Quizzy ist die perfekte Begleitung für dich.
 
+<br>
+
+
 Wofür ist Quizzy?
 
 Mit Quizzy kannst du:
@@ -24,20 +27,10 @@ Quizzy ist mehr als nur eine App – es ist dein täglicher Wissens-Boost, der d
 <br>
 <br>
 
-<!--
-## Geplantes Design
-Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma)
+
 <p>
-  <img src="./img/android_template_app_01.png" width="200">
-  <img src="./img/android_template_app_02.png" width="200">
-  <img src="./img/android_template_app_03.png" width="200">
-  <img src="./img/android_template_app_03.png" width="200">
+ <img src="./screenshots/home.gif" width="200"> <img src="./screenshots/question.gif" width="200"> <img src="./screenshots/quizzy_complete.png" width="200">
 </p>
--->
-![logoscreenfürcanva](https://github.com/user-attachments/assets/57994f0b-e6b6-4c35-8e1b-643f704480a6)   ![Homescreenfürcanva](https://github.com/user-attachments/assets/3b3cb06a-11ac-4d1a-aba4-6b1f2f464791)
-![speisekartescreenfürcanva](https://github.com/user-attachments/assets/a8a1928b-81e4-4404-adda-bf22825da181)
-![reservierscreenfürcanva](https://github.com/user-attachments/assets/a908e450-ca54-42ca-9a2c-84cde5b6c288)
-![Profilscreen](https://github.com/user-attachments/assets/0e05203d-95b9-46a0-bbe2-ddd3ee716840)
 
 
 
@@ -46,11 +39,13 @@ Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma)
 
 
 Features:
-- [X] Tisch Reservierung
-- [X] Gerichte Favorisieren
-- [ ] Lieferservice/Abholung
-- [ ] Chatbot
-- [ ] Timer
+- [X] Vielfältige Kategorien: Eine breite Auswahl an Themengebieten (z.B. Geschichte, Wissenschaft, Geografie, Popkultur, Sport), damit für jeden etwas dabei ist.
+- [X] Benutzerfreundliche Oberfläche: Eine intuitive und ansprechende Gestaltung, die das Navigieren und Spielen einfach macht.
+- [X] Highscore-System: Verfolge die besten Ergebnisse der Spieler und motiviere sie, sich selbst zu übertreffen.
+- [X] Feedback zu Antworten: Gibt sofortiges Feedback, ob eine Antwort richtig oder falsch war.
+- [X] Fortschritt speichern: Stellt sicher, dass der Spielstand und die Erfolge des Benutzers gespeichert werden.
+- [ ] Detaillierte Statistiken: Zeige Spielern ihre Fortschritte, Stärken und Schwächen in verschiedenen Kategorien an.
+- [ ] Offline-Modus: Ermögliche das Spielen auch ohne Internetverbindung.
 - [ ] ...
 
 Architektur(MVVM):
@@ -58,26 +53,21 @@ Architektur(MVVM):
 - MainViewModel()
 
 Model:
-- Reservierung
+- Categorie
+- Quiz
+- Result
+- TriviaCategory
 - User
-- Meal
-- Category
 
 Datenspeicherung:
-- Firestore
+- Room-Database 2.7.2
 
 API Calls:
-- TheMealDB Api
+- Open Trivia DB Api
 
 Dependencies/Repositories:
-- Retrofit 2.9.0 - Für Netzwerkoperationen
-- Lottie 6.1.0 - Für GIF'S
-- Logging Interceptor 4.11.0 - Für den Ablauf von Anwendungen zu protokollieren
+- Retrofit 3.0.0 - Für Netzwerkoperationen
+- Coil 2.7.0 - Für das laden von lokalen und asynchronen Bildern
+- Logging Interceptor 4.12.0 - Für den Ablauf von Anwendungen zu protokollieren
+- navArgs 2.9.1 - Für das sichere navigieren zwischen Fragmenten und weiterreichen der Argumente
 
-<!--Ausblick:-->
-
-Issue 2 (Feature):
-
-Selbstständige Speisekartenverwaltung.
-Um die Flexibilität und Autonomie der Restaurantbesitzer zu erhöhen, schlagen ich vor, eine Funktion zur selbstständigen Verwaltung von Speisekarten zu implementieren. Dies beinhaltet einen intuitiven Editor für die Erstellung und Bearbeitung von Speisekarten sowie die zuverlässige Verwaltung von Bildern für jedes Gericht.
- 
