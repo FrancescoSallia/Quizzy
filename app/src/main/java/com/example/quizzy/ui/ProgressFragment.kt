@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toDrawable
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentCompleteBinding
 import com.example.quizzy.databinding.FragmentProgressBinding
@@ -70,6 +71,7 @@ class ProgressFragment : Fragment() {
 
         val lineData = LineData(correctDataSet, wrongDataSet)
         vb.lineChart.apply {
+            background = Color.WHITE.toDrawable()
             data = lineData
             description.text = "Antworten Verlauf"
             animateX(1000)
@@ -121,6 +123,7 @@ class ProgressFragment : Fragment() {
         barData.barWidth = barWidth
 
         vb.barChart.apply {
+            background = Color.WHITE.toDrawable()
             data = barData
             description.text = "Antworten Balkendiagramm"
             axisRight.isEnabled = false
