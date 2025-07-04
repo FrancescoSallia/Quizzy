@@ -129,14 +129,15 @@ class QuestionFragment : Fragment() {
 
             vb.btnContinue.setOnClickListener {
                 val animFromTop = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_top)
+                val animAlpha = AnimationUtils.loadAnimation(requireContext(), R.anim.difficulty_anim)
 
                 if (viewModel.counterForAnimation != args.quizObject.size) {
                     vb.tvQuestion.startAnimation(animFromTop)
-                    vb.tvDifficultyLevel.startAnimation(animFromTop)
-                    vb.tvAnswerOne.startAnimation(animFromTop)
-                    vb.tvAnswerTwo.startAnimation(animFromTop)
-                    vb.tvAnswerThree.startAnimation(animFromTop)
-                    vb.tvAnswerFour.startAnimation(animFromTop)
+                    vb.tvDifficultyLevel.startAnimation(animAlpha)
+                    vb.tvAnswerOne.startAnimation(animAlpha)
+                    vb.tvAnswerTwo.startAnimation(animAlpha)
+                    vb.tvAnswerThree.startAnimation(animAlpha)
+                    vb.tvAnswerFour.startAnimation(animAlpha)
                     viewModel.counterForAnimation++
                 }
 

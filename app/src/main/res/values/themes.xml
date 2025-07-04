@@ -7,7 +7,7 @@
 
     <style name="Theme.Quizzy.Splash" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/background</item>
-<!--        <item name="android:windowSplashScreenAnimatedIcon">@drawable/spiralgalaxie</item>-->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/spiralgalaxie</item>
     </style>
 
     <style name="Theme.Quizzy" parent="Base.Theme.Quizzy" />

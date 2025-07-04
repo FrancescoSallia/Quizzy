@@ -12,4 +12,5 @@
     <color name="easy_Difficulty">#4CAF50</color>
     <color name="medium_Difficulty">#FB9E3A</color>
     <color name="hard_Difficulty">#EF2929</color>
+    <color name="elipse_bg">#181203</color>
 </resources>
