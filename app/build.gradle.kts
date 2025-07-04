@@ -44,6 +44,9 @@ android {
 
 dependencies {
 
+    //MPAndroidChart
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
     //Splash Screen
     implementation("androidx.core:core-splashscreen:1.0.1")
 
