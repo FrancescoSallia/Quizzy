@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.graphics.toColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -94,7 +92,6 @@ class QuestionFragment : Fragment() {
             vb.btnContinue.isEnabled = false
             vb.btnContinue.visibility = View.GONE
 
-
             for (i in cardViews.indices) {
                 cardViews[i].setOnClickListener {
                     val selectedText = answerViews[i].text.toString()
@@ -126,10 +123,9 @@ class QuestionFragment : Fragment() {
                 }
             }
 
-
             vb.btnContinue.setOnClickListener {
                 val animFromTop = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_top)
-                val animAlpha = AnimationUtils.loadAnimation(requireContext(), R.anim.difficulty_anim)
+                val animAlpha = AnimationUtils.loadAnimation(requireContext(), R.anim.alpha_anim)
 
                 if (viewModel.counterForAnimation != args.quizObject.size) {
                     vb.tvQuestion.startAnimation(animFromTop)
@@ -147,7 +143,6 @@ class QuestionFragment : Fragment() {
                     )
                 }
 
-
                 // Farben & Button zurücksetzen
                 for (i in cardViews.indices) {
                     cardViews[i].foreground = null
@@ -156,4 +151,5 @@ class QuestionFragment : Fragment() {
                 vb.btnContinue.isEnabled = false
             }
         }
-    }}
+    }
+}
