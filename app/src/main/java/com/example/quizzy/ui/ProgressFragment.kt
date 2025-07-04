@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentCompleteBinding
 import com.example.quizzy.databinding.FragmentProgressBinding
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -29,11 +30,14 @@ class ProgressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val correctAnswersList = listOf(2,0,1,2,0,0)
-        val wrongAnswersList = listOf(3,5,4,3,5,5)
+        val correctAnswersList = listOf(2,0,1,2,0,0,2)
+        val wrongAnswersList = listOf(3,5,4,3,5,5,3)
 
         setupChart(correctAnswersList = correctAnswersList, wrongAnswersList = wrongAnswersList )
         showPercentage(correctAnswersList = correctAnswersList, wrongAnswersList = wrongAnswersList)
+
+
+        setupBarChart(correctAnswersList = correctAnswersList, wrongAnswersList = wrongAnswersList)
 
     }
 
@@ -75,7 +79,6 @@ class ProgressFragment : Fragment() {
             invalidate()
         }
     }
-
     private fun showPercentage(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
         val totalCorrect = correctAnswersList.sum()
         val totalWrong = wrongAnswersList.sum()
@@ -87,5 +90,52 @@ class ProgressFragment : Fragment() {
 
         val formatted = String.format("%.1f", percentCorrect)
         vb.progressPercentage.text = "Richtig: $formatted%"
+    }
+
+
+    //BarChart(Column)
+    private fun setupBarChart(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
+        // Es werden zwei Balken pro X-Wert (Quiznummer) angezeigt: richtig und falsch
+        val barEntriesCorrect = correctAnswersList.mapIndexed { index, value ->
+            com.github.mikephil.charting.data.BarEntry(index.toFloat(), value.toFloat())
+        }
+        val barEntriesWrong = wrongAnswersList.mapIndexed { index, value ->
+            com.github.mikephil.charting.data.BarEntry(index.toFloat(), value.toFloat())
+        }
+
+        val correctDataSet = com.github.mikephil.charting.data.BarDataSet(barEntriesCorrect, "Richtige Antworten").apply {
+            color = Color.GREEN
+            valueTextColor = Color.GREEN
+        }
+        val wrongDataSet = com.github.mikephil.charting.data.BarDataSet(barEntriesWrong, "Falsche Antworten").apply {
+            color = Color.RED
+            valueTextColor = Color.RED
+        }
+
+        // Beide DataSets in eine BarData
+        val barData = com.github.mikephil.charting.data.BarData(correctDataSet, wrongDataSet)
+        // Balken nebeneinander gruppieren
+        val groupSpace = 0.2f
+        val barSpace = 0.05f
+        val barWidth = 0.35f
+        barData.barWidth = barWidth
+
+        vb.barChart.apply {
+            data = barData
+            description.text = "Antworten Balkendiagramm"
+            axisRight.isEnabled = false
+            xAxis.granularity = 1f
+            xAxis.isGranularityEnabled = true
+            xAxis.position = com.github.mikephil.charting.components.XAxis.XAxisPosition.BOTTOM
+            legend.isEnabled = true
+            setFitBars(true)
+            // Gruppierung der Balken
+            val groupCount = correctAnswersList.size.coerceAtLeast(wrongAnswersList.size)
+            xAxis.axisMinimum = 0f
+            xAxis.axisMaximum = 0f + groupCount
+            groupBars(0f, groupSpace, barSpace)
+            animateY(1000)
+            invalidate()
+        }
     }
 }
