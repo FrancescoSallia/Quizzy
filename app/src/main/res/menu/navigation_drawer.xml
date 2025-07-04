@@ -5,7 +5,7 @@
         android:id="@+id/group1"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/item1"
+            android:id="@+id/progressFragment"
             android:icon="@drawable/quiz_icon"
             android:title="Progress"/>
 <!--            android:checked="true" -->

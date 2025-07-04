@@ -14,6 +14,9 @@
             app:destination="@id/questionFragment"
             app:enterAnim="@anim/slide_in_bottom"
             app:exitAnim="@anim/slide_out_bottom" />
+        <action
+            android:id="@+id/action_homeFragment_to_progressFragment"
+            app:destination="@id/progressFragment" />
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
@@ -51,4 +54,9 @@
             android:name="questionsAmount"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/progressFragment"
+        android:name="com.example.quizzy.ui.ProgressFragment"
+        android:label="fragment_progress"
+        tools:layout="@layout/fragment_progress" />
 </navigation>
