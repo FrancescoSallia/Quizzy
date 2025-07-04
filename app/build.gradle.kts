@@ -44,6 +44,9 @@ android {
 
 dependencies {
 
+    //Splash Screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
     // Room-Datenbank
     implementation("androidx.room:room-runtime:2.7.2")
     implementation("androidx.room:room-ktx:2.7.2")
