@@ -105,7 +105,6 @@ class ProgressFragment : Fragment() {
         barData.barWidth = barWidth
 
         vb.barChart.apply {
-//            background = Color.WHITE.toDrawable()
             data = barData
             description.text = "Answers Bar Chart"
             axisRight.isEnabled = false

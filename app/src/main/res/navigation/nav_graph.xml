@@ -14,9 +14,6 @@
             app:destination="@id/questionFragment"
             app:enterAnim="@anim/slide_in_bottom"
             app:exitAnim="@anim/slide_out_bottom" />
-        <action
-            android:id="@+id/action_homeFragment_to_progressFragment"
-            app:destination="@id/progressFragment" />
     </fragment>
     <fragment
         android:id="@+id/questionFragment"

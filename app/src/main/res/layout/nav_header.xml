@@ -8,37 +8,30 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="300dp">
-
-        <ImageView
-            android:id="@+id/imageView_profile"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_gravity="start"
-            android:background="@drawable/bg_rectangle"
-            android:contentDescription="Profile picture"
-            android:scaleType="centerCrop"
-            android:src="@drawable/quizzy_logo_launch_removebg" />
-
-    </androidx.cardview.widget.CardView>
+    <ImageView
+        android:id="@+id/imageView_profile"
+        android:layout_width="64dp"
+        android:layout_height="20dp"
+        android:layout_gravity="start"
+        android:background="@drawable/bg_rectangle"
+        android:contentDescription="Profile picture"
+        android:scaleType="centerCrop"
+        android:src="@drawable/quizzy_logo_launch_removebg" />
 
     <TextView
         android:id="@+id/textView_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Username"
+        android:fontFamily="@font/climate_crisis"
+        android:text="Quizzy"
         android:textColor="@android:color/white"
-        android:textSize="16sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user@example.com"
+        android:text="Ready for the next question? Quizzy is it!"
         android:textColor="@android:color/white"
         android:textSize="14sp" />
 </LinearLayout>

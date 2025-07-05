@@ -3,20 +3,23 @@
 
     <group
         android:id="@+id/group1"
-        android:checkableBehavior="single">
+        android:checkableBehavior="single" android:menuCategory="secondary">
         <item
             android:id="@+id/progressFragment"
             android:icon="@drawable/chart_up_icon"
-            android:title="Progress"/>
-<!--            android:checked="true" -->
-        <item
-            android:id="@+id/item2"
-            android:icon="@drawable/spiralgalaxie"
-            android:title="spiraleText" />
+            android:title="Progress"
+            android:checked="false"/>
+<!--        <item-->
+<!--            android:id="@+id/item2"-->
+<!--            android:icon="@drawable/spiralgalaxie"-->
+<!--            android:title="spiraleText"-->
+<!--            android:checked="false"/>-->
 
-        <item
-            android:id="@+id/item3"
-            android:icon="@drawable/schach"
-            android:title="@string/app_name" />
+<!--        <item-->
+<!--            android:id="@+id/item3"-->
+<!--            android:icon="@drawable/schach"-->
+<!--            android:title="@string/app_name"-->
+<!--            android:checked="false"/>-->
+
     </group>
 </menu>
