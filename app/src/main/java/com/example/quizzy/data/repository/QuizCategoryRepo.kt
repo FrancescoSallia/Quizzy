@@ -31,3 +31,49 @@ fun getCategoryDrawable(categoryId: Int): Int {
         else -> R.drawable.quiz_icon     // Default fallback image
     }
 }
+
+
+fun randomPositivFeedback(): String {
+   val positivFeedbackList : List<String> = listOf(
+       "Well done!",
+       "Great job!",
+       "Correct!",
+       "You nailed it!",
+       "That's right!",
+       "Nice Work",
+       "Exactly!",
+       "Perfect answer!",
+       "Brilliant!",
+       "You're on fire!"
+   ).shuffled()
+
+    return positivFeedbackList.first()
+}
+
+fun randomNegativFeedback(): String {
+    val negativFeedbackList : List<String> = listOf(
+        "Wrong answer",
+        "Try again next time",
+        "Almost had it",
+        "Miss",
+        "Not this time",
+        "Close, but not correct",
+        "Incorrect",
+        "Better luck next round",
+        "That's not it"
+    ).shuffled()
+
+    return negativFeedbackList.first()
+}
+
+
+
+
+
+
+
+
+
+
+
+

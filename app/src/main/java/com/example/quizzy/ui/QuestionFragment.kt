@@ -1,19 +1,21 @@
 package com.example.quizzy.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.quizzy.data.repository.randomPositivFeedback
+import com.example.quizzy.data.repository.randomNegativFeedback
 import android.view.animation.AnimationUtils
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.load
 import com.example.quizzy.R
+import com.example.quizzy.data.repository.getCategoryDrawable
 import com.example.quizzy.databinding.FragmentQuestionBinding
 import com.example.quizzy.viewModel.MainViewModel
 
@@ -53,6 +55,8 @@ class QuestionFragment : Fragment() {
 
             //The Question
             vb.tvQuestion.text = currentQuestion.question
+            vb.tvCategoryTitle.text = currentQuestion.category
+//            vb.ivCategoryItem.load(getCategoryDrawable())
             vb.tvDifficultyLevel.text = currentQuestion.difficulty
 
             val colorResId = when(currentQuestion.difficulty.lowercase()) {
@@ -111,19 +115,17 @@ class QuestionFragment : Fragment() {
                     vb.tvFeedback.visibility = View.VISIBLE
 
                     if (selectedText == correctAnswer) {
-                        vb.tvFeedback.text = "Well done"
+                        vb.tvFeedback.text = randomPositivFeedback() //Positiv Feedback
                         vb.tvFeedback.setTextColor(ContextCompat.getColor(requireContext(), R.color.correct_answer_color))
 
-                        vb.ivFeedback.setImageResource(R.drawable.correct_item)
+                        vb.ivFeedback.load(R.drawable.correct_item)
                         cardViews[i].foreground = ContextCompat.getDrawable(requireContext(), R.drawable.correct_answer)
                         viewModel.rightAnswerClicked++
                     } else {
-//                        vb.ivFeedback.foreground = R.drawable.wrong_item.toDrawable()
-                        vb.ivFeedback.setImageResource(R.drawable.wrong_item)
-                        vb.tvFeedback.text = "Miss"
+                        vb.ivFeedback.load(R.drawable.wrong_item)
+                        vb.tvFeedback.text = randomNegativFeedback() //Negativ FeedBack
                         vb.tvFeedback.setTextColor(ContextCompat.getColor(requireContext(), R.color.hard_Difficulty)) // deine Farbe
 
-                        vb.ivFeedback.setImageResource(R.drawable.wrong_item)
                         cardViews[i].foreground = ContextCompat.getDrawable(requireContext(), R.drawable.wrong_answer)
 
                         // Richtige Antwort grün hervorheben

@@ -283,12 +283,14 @@
         android:id="@+id/tv_feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="32dp"
         android:text="Correct"
+        android:textAlignment="center"
         android:textColor="@color/correct_answer_color"
-        android:textSize="22dp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cardView4"
+        app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="@+id/cardView4"
         app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
@@ -301,6 +303,37 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_feedback"
         app:layout_constraintStart_toEndOf="@+id/tv_feedback"
         app:layout_constraintTop_toTopOf="@+id/tv_feedback" />
+
+    <TextView
+        android:id="@+id/tv_category_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="18dp"
+        android:fontFamily="@font/baloo"
+        android:text="Category Title"
+        android:textAlignment="center"
+        android:textColor="#BBF56F"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+    <ImageView
+        android:id="@+id/iv_category_item"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="11dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/atom"
+        android:tint="#ADE268"
+        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
