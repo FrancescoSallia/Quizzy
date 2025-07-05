@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentCompleteBinding
 import com.example.quizzy.databinding.FragmentProgressBinding
@@ -20,10 +21,8 @@ import com.github.mikephil.charting.data.LineDataSet
 import kotlin.getValue
 
 class ProgressFragment : Fragment() {
-
     private lateinit var vb: FragmentProgressBinding
     private val viewModel: MainViewModel by activityViewModels()
-
 
 
     override fun onCreateView(
@@ -37,13 +36,16 @@ class ProgressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val correctAnswersList = listOf(2,0,1,2,0,0,2)
-//        val wrongAnswersList = listOf(3,5,4,3,5,5,3)
+        vb.ivBackArrowProgress.setOnClickListener {
+            findNavController().navigate(ProgressFragmentDirections.actionProgressFragmentToHomeFragment())
+        }
+        vb.tvBackText.setOnClickListener {
+            findNavController().navigate(ProgressFragmentDirections.actionProgressFragmentToHomeFragment())
+        }
 
         viewModel.userList.observe(viewLifecycleOwner) { users ->
 
             users.forEach { user ->
-
                 setupBarChart(
                     correctAnswersList = user.rightAnswerList,
                     wrongAnswersList = user.wrongAnswerList
@@ -52,17 +54,11 @@ class ProgressFragment : Fragment() {
                     correctAnswersList = user.rightAnswerList,
                     wrongAnswersList = user.wrongAnswerList
                 )
-
                 vb.progressRightAnswerTotal.text = user.rightAnswerList.sum().toString()
                 vb.progressWrongAnswerTotal.text = user.wrongAnswerList.sum().toString()
-                Log.i("debug", user.rightAnswerList.sum().toString())
-                Log.i("debug", user.wrongAnswerList.sum().toString())
-//                println(user.wrongAnswerList.sum().toString())
-
             }
         }
     }
-
     private fun showPercentage(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
         val totalCorrect = correctAnswersList.sum()
         val totalWrong = wrongAnswersList.sum()
@@ -76,7 +72,6 @@ class ProgressFragment : Fragment() {
         vb.progressPercentage.text = "$formatted%"
     }
 
-
     //BarChart(Column)
     private fun setupBarChart(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
         // Es werden zwei Balken pro X-Wert (Quiznummer) angezeigt: richtig und falsch
@@ -86,7 +81,6 @@ class ProgressFragment : Fragment() {
         val barEntriesWrong = wrongAnswersList.mapIndexed { index, value ->
             com.github.mikephil.charting.data.BarEntry(index.toFloat(), value.toFloat())
         }
-
         val correctDataSet = com.github.mikephil.charting.data.BarDataSet(barEntriesCorrect, "Right Answers").apply {
             color = Color.GREEN
             valueTextColor = Color.GREEN
@@ -95,7 +89,6 @@ class ProgressFragment : Fragment() {
             color = Color.RED
             valueTextColor = Color.RED
         }
-
         // Beide DataSets in eine BarData
         val barData = com.github.mikephil.charting.data.BarData(correctDataSet, wrongDataSet)
         // Balken nebeneinander gruppieren

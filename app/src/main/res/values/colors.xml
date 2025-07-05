@@ -13,4 +13,5 @@
     <color name="medium_Difficulty">#FB9E3A</color>
     <color name="hard_Difficulty">#EF2929</color>
     <color name="elipse_bg">#181203</color>
+    <color name="correct_answer_color">#029E27</color>
 </resources>

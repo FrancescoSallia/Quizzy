@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -91,6 +92,8 @@ class QuestionFragment : Fragment() {
 
             vb.btnContinue.isEnabled = false
             vb.btnContinue.visibility = View.GONE
+            vb.ivFeedback.visibility = View.GONE
+            vb.tvFeedback.visibility = View.GONE
 
             for (i in cardViews.indices) {
                 cardViews[i].setOnClickListener {
@@ -104,14 +107,24 @@ class QuestionFragment : Fragment() {
                     // Weitere Klicks sperren
                     cardViews.forEach { it.isEnabled = false }
 
+                    vb.ivFeedback.visibility = View.VISIBLE
+                    vb.tvFeedback.visibility = View.VISIBLE
+
                     if (selectedText == correctAnswer) {
+                        vb.tvFeedback.text = "Well done"
+                        vb.tvFeedback.setTextColor(ContextCompat.getColor(requireContext(), R.color.correct_answer_color))
+
+                        vb.ivFeedback.setImageResource(R.drawable.correct_item)
                         cardViews[i].foreground = ContextCompat.getDrawable(requireContext(), R.drawable.correct_answer)
                         viewModel.rightAnswerClicked++
-                        Log.i("debug", " Right Answer: ${viewModel.rightAnswerClicked}")
-                        print("${viewModel.rightAnswerClicked}")
                     } else {
+//                        vb.ivFeedback.foreground = R.drawable.wrong_item.toDrawable()
+                        vb.ivFeedback.setImageResource(R.drawable.wrong_item)
+                        vb.tvFeedback.text = "Miss"
+                        vb.tvFeedback.setTextColor(ContextCompat.getColor(requireContext(), R.color.hard_Difficulty)) // deine Farbe
+
+                        vb.ivFeedback.setImageResource(R.drawable.wrong_item)
                         cardViews[i].foreground = ContextCompat.getDrawable(requireContext(), R.drawable.wrong_answer)
-                        Log.i("debug", " wrong Answer: ${viewModel.rightAnswerClicked}")
 
                         // Richtige Antwort grün hervorheben
                         val correctIndex = answerViews.indexOfFirst { it.text == correctAnswer }
@@ -149,6 +162,11 @@ class QuestionFragment : Fragment() {
                     cardViews[i].isEnabled = true
                 }
                 vb.btnContinue.isEnabled = false
+
+                vb.ivFeedback.visibility = View.INVISIBLE
+                vb.tvFeedback.visibility = View.INVISIBLE
+                vb.tvFeedback.text = ""
+                vb.ivFeedback.setImageDrawable(null)
             }
         }
     }
