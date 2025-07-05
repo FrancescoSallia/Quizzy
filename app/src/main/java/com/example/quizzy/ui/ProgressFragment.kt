@@ -2,6 +2,7 @@ package com.example.quizzy.ui
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -52,6 +53,12 @@ class ProgressFragment : Fragment() {
                     wrongAnswersList = user.wrongAnswerList
                 )
 
+                vb.progressRightAnswerTotal.text = user.rightAnswerList.sum().toString()
+                vb.progressWrongAnswerTotal.text = user.wrongAnswerList.sum().toString()
+                Log.i("debug", user.rightAnswerList.sum().toString())
+                Log.i("debug", user.wrongAnswerList.sum().toString())
+//                println(user.wrongAnswerList.sum().toString())
+
             }
         }
     }
@@ -98,7 +105,7 @@ class ProgressFragment : Fragment() {
         barData.barWidth = barWidth
 
         vb.barChart.apply {
-            background = Color.WHITE.toDrawable()
+//            background = Color.WHITE.toDrawable()
             data = barData
             description.text = "Answers Bar Chart"
             axisRight.isEnabled = false
