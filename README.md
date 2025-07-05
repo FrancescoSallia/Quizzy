@@ -29,7 +29,14 @@ Quizzy ist mehr als nur eine App – es ist dein täglicher Wissens-Boost, der d
 
 
 <p>
- <img src="./screenshots/home.gif" width="200"> <img src="./screenshots/question.gif" width="200"> <img src="./screenshots/quizzy_complete.png" width="200">
+ <img src="./screenshot/splash.png" width="200">
+ <img src="./screenshot/home_rec.gif" width="200">
+  <img src="./screenshot/category.png" width="200">
+   <img src="./screenshot/progress.png" width="200">
+   <img src="./screenshot/wrong.png" width="200">
+   <img src="./screenshot/correct_answer.png" width="200">
+ <img src="./screenshot/complete.png" width="200">
+  <img src="./screenshot/navigation.png" width="200">
 </p>
 
 
