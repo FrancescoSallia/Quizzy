@@ -43,7 +43,7 @@ class ProgressFragment : Fragment() {
 
             users.forEach { user ->
 
-                setupChart(
+                setupBarChart(
                     correctAnswersList = user.rightAnswerList,
                     wrongAnswersList = user.wrongAnswerList
                 )
@@ -52,54 +52,10 @@ class ProgressFragment : Fragment() {
                     wrongAnswersList = user.wrongAnswerList
                 )
 
-
-                setupBarChart(
-                    correctAnswersList = user.rightAnswerList,
-                    wrongAnswersList = user.wrongAnswerList
-                )
             }
         }
     }
 
-    private fun setupChart(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
-        // X-Achse: z.B. Quiznummer 0,1,2...
-        val correctEntries = correctAnswersList.mapIndexed { index, value ->
-            Entry(index.toFloat(), value.toFloat())
-        }
-        val wrongEntries = wrongAnswersList.mapIndexed { index, value ->
-            Entry(index.toFloat(), value.toFloat())
-        }
-
-        val correctDataSet = LineDataSet(correctEntries, "Richtige Antworten").apply {
-            color = Color.GREEN
-            valueTextColor = Color.GREEN
-            lineWidth = 3f
-            circleRadius = 5f
-            setCircleColor(Color.GREEN)
-            mode = LineDataSet.Mode.CUBIC_BEZIER
-        }
-
-        val wrongDataSet = LineDataSet(wrongEntries, "Falsche Antworten").apply {
-            color = Color.RED
-            valueTextColor = Color.RED
-            lineWidth = 3f
-            circleRadius = 5f
-            setCircleColor(Color.RED)
-            mode = LineDataSet.Mode.CUBIC_BEZIER
-        }
-
-        val lineData = LineData(correctDataSet, wrongDataSet)
-        vb.lineChart.apply {
-            background = Color.WHITE.toDrawable()
-            data = lineData
-            description.text = "Antworten Verlauf"
-            animateX(1000)
-            axisRight.isEnabled = false
-            xAxis.granularity = 1f
-            legend.isEnabled = true
-            invalidate()
-        }
-    }
     private fun showPercentage(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
         val totalCorrect = correctAnswersList.sum()
         val totalWrong = wrongAnswersList.sum()
@@ -110,7 +66,7 @@ class ProgressFragment : Fragment() {
         } else 0f
 
         val formatted = String.format("%.1f", percentCorrect)
-        vb.progressPercentage.text = "Richtig: $formatted%"
+        vb.progressPercentage.text = "$formatted%"
     }
 
 
@@ -124,11 +80,11 @@ class ProgressFragment : Fragment() {
             com.github.mikephil.charting.data.BarEntry(index.toFloat(), value.toFloat())
         }
 
-        val correctDataSet = com.github.mikephil.charting.data.BarDataSet(barEntriesCorrect, "Richtige Antworten").apply {
+        val correctDataSet = com.github.mikephil.charting.data.BarDataSet(barEntriesCorrect, "Right Answers").apply {
             color = Color.GREEN
             valueTextColor = Color.GREEN
         }
-        val wrongDataSet = com.github.mikephil.charting.data.BarDataSet(barEntriesWrong, "Falsche Antworten").apply {
+        val wrongDataSet = com.github.mikephil.charting.data.BarDataSet(barEntriesWrong, "Wrong Answers").apply {
             color = Color.RED
             valueTextColor = Color.RED
         }
@@ -144,7 +100,7 @@ class ProgressFragment : Fragment() {
         vb.barChart.apply {
             background = Color.WHITE.toDrawable()
             data = barData
-            description.text = "Antworten Balkendiagramm"
+            description.text = "Answers Bar Chart"
             axisRight.isEnabled = false
             xAxis.granularity = 1f
             xAxis.isGranularityEnabled = true

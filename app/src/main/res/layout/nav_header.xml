@@ -21,7 +21,7 @@
             android:background="@drawable/bg_rectangle"
             android:contentDescription="Profile picture"
             android:scaleType="centerCrop"
-            android:src="@drawable/quizzy_logo" />
+            android:src="@drawable/quizzy_logo_launch_removebg" />
 
     </androidx.cardview.widget.CardView>
 
