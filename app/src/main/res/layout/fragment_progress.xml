@@ -146,6 +146,22 @@
             android:layout_marginHorizontal="8dp"
             android:layout_marginVertical="16dp" />
 
+        <Button
+            android:id="@+id/btn_reset_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="32dp"
+            android:backgroundTint="@color/hard_Difficulty"
+            android:elevation="10dp"
+            android:fontFamily="@font/baloo"
+            android:paddingVertical="16dp"
+            android:shadowDx="30"
+            android:shadowDy="30"
+            android:text="Reset All"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

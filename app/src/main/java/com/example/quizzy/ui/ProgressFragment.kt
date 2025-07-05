@@ -58,6 +58,10 @@ class ProgressFragment : Fragment() {
                 vb.progressWrongAnswerTotal.text = user.wrongAnswerList.sum().toString()
             }
         }
+
+        vb.btnResetProgress.setOnClickListener {
+            //TODO: Hier kommt die lösch alles vom User funktion(Room-Database)
+        }
     }
     private fun showPercentage(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
         val totalCorrect = correctAnswersList.sum()
