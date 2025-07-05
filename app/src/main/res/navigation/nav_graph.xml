@@ -34,6 +34,9 @@
         <argument
             android:name="quizObject"
             app:argType="com.example.quizzy.model.Result[]" />
+        <argument
+            android:name="categoryList"
+            app:argType="com.example.quizzy.model.TriviaCategory[]" />
     </fragment>
     <fragment
         android:id="@+id/completeFragment"

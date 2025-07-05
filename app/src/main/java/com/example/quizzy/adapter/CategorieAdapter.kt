@@ -32,6 +32,7 @@ class CategorieAdapter(
 
     override fun onBindViewHolder(holder: CategorieViewHolder, position: Int) {
 
+
      val quiz = database[position]
 
         holder.binding.tvCategorieName.text = quiz.name

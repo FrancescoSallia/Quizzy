@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.quizzy.data.OpenTriviaAPI
 import com.example.quizzy.data.local.RoomRepository
 import com.example.quizzy.data.local.getDatabase
+import com.example.quizzy.data.repository.getCategoryDrawable
 import com.example.quizzy.model.Result
 import com.example.quizzy.model.TriviaCategory
 import com.example.quizzy.model.User
@@ -38,11 +39,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _randomQuizes = MutableLiveData<List<Result>?>()
     val randomQuizes: LiveData<List<Result>?>
-    get() = _randomQuizes
+        get() = _randomQuizes
 
     private val _categories = MutableLiveData<List<TriviaCategory>>()
     val categories: LiveData<List<TriviaCategory>>
-    get() = _categories
+        get() = _categories
 
     private val _getQuestions = MutableLiveData<List<Result>?>()
     val getQuestions: LiveData<List<Result>?>
@@ -54,69 +55,75 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _currentIndexProgressivBar = MutableLiveData<Int>()
     val currentIndexProgressivBar: LiveData<Int>
-    get() = _currentIndexProgressivBar
+        get() = _currentIndexProgressivBar
 
-
-    fun getRandomQuizes(){
-        viewModelScope.launch {
-            try {
-                val quizFromApi = OpenTriviaAPI.retrofitService.getRandomQuizes()
-                _getQuestions.postValue(quizFromApi.results)
-                currentIndex = 0
-                _currentQuestion.postValue(quizFromApi.results[currentIndex])
-                _currentIndexProgressivBar.postValue(currentIndex)
-            } catch (e: Exception) {
-                Log.e("error", "fun getRandomQuizes(viewModel): ${e.message}")
+        fun getRandomQuizes() {
+            viewModelScope.launch {
+                try {
+                    val quizFromApi = OpenTriviaAPI.retrofitService.getRandomQuizes()
+                    _getQuestions.postValue(quizFromApi.results)
+                    currentIndex = 0
+                    _currentQuestion.postValue(quizFromApi.results[currentIndex])
+                    _currentIndexProgressivBar.postValue(currentIndex)
+                } catch (e: Exception) {
+                    Log.e("error", "fun getRandomQuizes(viewModel): ${e.message}")
+                }
             }
         }
-    }
 
-    fun getCategories() {
-        viewModelScope.launch {
-            try {
-                val categoriesFromApi = OpenTriviaAPI.retrofitService.getCategories()
-                _categories.postValue(categoriesFromApi.triviaCategories)
-            } catch (e: Exception) {
-                Log.e("error", "fun getCategories(viewModel): ${e.message}")
+        fun getCategories() {
+            viewModelScope.launch {
+                try {
+                    val categoriesFromApi = OpenTriviaAPI.retrofitService.getCategories()
+                    _categories.postValue(categoriesFromApi.triviaCategories)
+                } catch (e: Exception) {
+                    Log.e("error", "fun getCategories(viewModel): ${e.message}")
+                }
             }
         }
+
+    //Diese Funktion ist dafür da, damit man das richtige Categorie item bekommt bei der aktuellen frage!
+    fun getCategoryFromName(categoryName: String): Int {
+        val findCategory = _categories.value?.find { category -> category.name == categoryName }
+        Log.d("debug", "In MainViewModel: getCategoryFromName() return ID: ${findCategory?.id}")
+        return getCategoryDrawable(findCategory!!.id)
     }
 
-    fun getQuizQuestions(categorieInt: Int) {
-        viewModelScope.launch {
-            try {
-                val questionsObjectApi = OpenTriviaAPI.retrofitService.getQuizQuestions(categorieInt = categorieInt )
-                _getQuestions.postValue(questionsObjectApi.results)
-                currentIndex = 0
-                _currentQuestion.postValue(questionsObjectApi.results[currentIndex])
-            } catch (e: Exception) {
-                Log.e("error", "fun getQuizQuestions(viewModel): ${e.message}")
+        fun getQuizQuestions(categorieInt: Int) {
+            viewModelScope.launch {
+                try {
+                    val questionsObjectApi =
+                        OpenTriviaAPI.retrofitService.getQuizQuestions(categorieInt = categorieInt)
+                    _getQuestions.postValue(questionsObjectApi.results)
+                    currentIndex = 0
+                    _currentQuestion.postValue(questionsObjectApi.results[currentIndex])
+                } catch (e: Exception) {
+                    Log.e("error", "fun getQuizQuestions(viewModel): ${e.message}")
+                }
             }
         }
-    }
 
 
-    fun showNextQuestion(navigateToCompletedFragment: () -> Unit) {
-        _getQuestions.value?.let { questions ->
-            if (currentIndex + 1 < questions.size) {
-                currentIndex++
-                _currentQuestion.postValue(questions[currentIndex])
-                _currentIndexProgressivBar.postValue(currentIndex)
-            } else {
-                counterForAnimation = 1
-                navigateToCompletedFragment() // Navigiert weiter wenn alle fragen durch sind
+        fun showNextQuestion(navigateToCompletedFragment: () -> Unit) {
+            _getQuestions.value?.let { questions ->
+                if (currentIndex + 1 < questions.size) {
+                    currentIndex++
+                    _currentQuestion.postValue(questions[currentIndex])
+                    _currentIndexProgressivBar.postValue(currentIndex)
+                } else {
+                    counterForAnimation = 1
+                    navigateToCompletedFragment() // Navigiert weiter wenn alle fragen durch sind
+                }
             }
         }
+
+        fun resetGetQuestions() {
+            _getQuestions.value = null
+            _currentQuestion.value = null
+            _randomQuizes.value = null
+            _currentIndexProgressivBar.value = 0
+        }
+
+
     }
-
-    fun resetGetQuestions() {
-        _getQuestions.value = null
-        _currentQuestion.value = null
-        _randomQuizes.value = null
-        _currentIndexProgressivBar.value = 0
-    }
-
-
-
-}
 

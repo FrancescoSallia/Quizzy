@@ -1,6 +1,7 @@
 package com.example.quizzy.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,7 +57,22 @@ class QuestionFragment : Fragment() {
             //The Question
             vb.tvQuestion.text = currentQuestion.question
             vb.tvCategoryTitle.text = currentQuestion.category
-//            vb.ivCategoryItem.load(getCategoryDrawable())
+            val findCategory = args.categoryList.find { category -> category.name == currentQuestion.category }
+
+            if (findCategory != null){
+                val categoryItem = viewModel.getCategoryFromName(findCategory.name)
+                vb.ivCategoryItem.load(categoryItem)
+
+            }
+
+
+
+
+//            vb.ivCategoryItem.load(currentQuestion.category)
+
+
+
+
             vb.tvDifficultyLevel.text = currentQuestion.difficulty
 
             val colorResId = when(currentQuestion.difficulty.lowercase()) {

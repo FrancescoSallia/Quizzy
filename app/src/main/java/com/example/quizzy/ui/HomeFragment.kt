@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.quizzy.R
 import com.example.quizzy.adapter.CategorieAdapter
 import com.example.quizzy.databinding.FragmentHomeBinding
+import com.example.quizzy.model.TriviaCategory
 import com.example.quizzy.viewModel.MainViewModel
 
 class HomeFragment : Fragment() {
@@ -55,12 +56,13 @@ class HomeFragment : Fragment() {
 
         viewModel.categories.observe(viewLifecycleOwner) { quiz ->
             vb.rvCategories.adapter = CategorieAdapter(database = quiz, viewModel)
+
         }
 
             viewModel.getQuestions.observe(viewLifecycleOwner) { questionList ->
                 if (questionList != null && questionList.isNotEmpty()) {
                     val action = HomeFragmentDirections
-                        .actionHomeFragmentToQuestionFragment(questionList.toTypedArray())
+                        .actionHomeFragmentToQuestionFragment(questionList.toTypedArray(), categoryList = viewModel.categories.value!!.toTypedArray())
                     findNavController().navigate(action)
                 }
             }
@@ -68,7 +70,7 @@ class HomeFragment : Fragment() {
         viewModel.randomQuizes.observe(viewLifecycleOwner) { randomQuizList ->
             if (randomQuizList != null && randomQuizList.isNotEmpty()) {
                 val action = HomeFragmentDirections
-                    .actionHomeFragmentToQuestionFragment(randomQuizList.toTypedArray())
+                    .actionHomeFragmentToQuestionFragment(randomQuizList.toTypedArray(), categoryList = viewModel.categories.value!!.toTypedArray())
                 findNavController().navigate(action)
             }
         }
@@ -77,8 +79,5 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.getCategories()
-
-
-
     }
 }
