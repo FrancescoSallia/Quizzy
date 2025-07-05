@@ -7,17 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toDrawable
+import androidx.fragment.app.activityViewModels
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentCompleteBinding
 import com.example.quizzy.databinding.FragmentProgressBinding
+import com.example.quizzy.viewModel.MainViewModel
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import kotlin.getValue
 
 class ProgressFragment : Fragment() {
 
     private lateinit var vb: FragmentProgressBinding
+    private val viewModel: MainViewModel by activityViewModels()
+
 
 
     override fun onCreateView(
@@ -31,15 +36,29 @@ class ProgressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val correctAnswersList = listOf(2,0,1,2,0,0,2)
-        val wrongAnswersList = listOf(3,5,4,3,5,5,3)
+//        val correctAnswersList = listOf(2,0,1,2,0,0,2)
+//        val wrongAnswersList = listOf(3,5,4,3,5,5,3)
 
-        setupChart(correctAnswersList = correctAnswersList, wrongAnswersList = wrongAnswersList )
-        showPercentage(correctAnswersList = correctAnswersList, wrongAnswersList = wrongAnswersList)
+        viewModel.userList.observe(viewLifecycleOwner) { users ->
+
+            users.forEach { user ->
+
+                setupChart(
+                    correctAnswersList = user.rightAnswerList,
+                    wrongAnswersList = user.wrongAnswerList
+                )
+                showPercentage(
+                    correctAnswersList = user.rightAnswerList,
+                    wrongAnswersList = user.wrongAnswerList
+                )
 
 
-        setupBarChart(correctAnswersList = correctAnswersList, wrongAnswersList = wrongAnswersList)
-
+                setupBarChart(
+                    correctAnswersList = user.rightAnswerList,
+                    wrongAnswersList = user.wrongAnswerList
+                )
+            }
+        }
     }
 
     private fun setupChart(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {

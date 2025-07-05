@@ -6,7 +6,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/progressFragment"
-            android:icon="@drawable/quiz_icon"
+            android:icon="@drawable/chart_up_icon"
             android:title="Progress"/>
 <!--            android:checked="true" -->
         <item
@@ -19,5 +19,4 @@
             android:icon="@drawable/schach"
             android:title="@string/app_name" />
     </group>
-
 </menu>
