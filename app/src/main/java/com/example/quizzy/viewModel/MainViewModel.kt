@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavArgs
 import com.example.quizzy.data.OpenTriviaAPI
 import com.example.quizzy.data.local.RoomRepository
 import com.example.quizzy.data.local.getDatabase
@@ -116,13 +117,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
         }
-
         fun resetGetQuestions() {
             _getQuestions.value = null
             _currentQuestion.value = null
             _randomQuizes.value = null
             _currentIndexProgressivBar.value = 0
         }
+
+    fun resetQuizState() {
+        _getQuestions.value = null
+        _randomQuizes.value = null
+        _currentIndexProgressivBar.value = 0
+        _currentQuestion.value = null
+        rightAnswerClicked = 0
+        counterForAnimation = 0
+    }
 
 }
 

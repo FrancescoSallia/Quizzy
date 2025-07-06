@@ -47,11 +47,19 @@ class QuestionFragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             //back button vom handy kann jetzt nicht wieder zurück navigieren!
-//            findNavController().navigateUp()
+//            findNavController().navigate(R.id.action_questionFragment_to_homeFragment)
+
+
+            findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToHomeFragment())
+            viewModel.rightAnswerClicked = 0
+            viewModel.resetGetQuestions()
         }
 
         viewModel.currentQuestion.observe(viewLifecycleOwner) { currentQuestion ->
-            val answerList: MutableList<String> = currentQuestion?.incorrectAnswers!!.toMutableList()
+            if (currentQuestion == null) return@observe
+
+
+            val answerList: MutableList<String> = currentQuestion.incorrectAnswers.toMutableList()
             answerList.add(currentQuestion.correctAnswer)
             val shuffledAnswers = answerList.shuffled()
 

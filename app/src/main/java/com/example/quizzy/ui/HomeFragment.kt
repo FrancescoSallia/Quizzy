@@ -19,8 +19,8 @@ import com.example.quizzy.viewModel.MainViewModel
 
 class HomeFragment : Fragment() {
 
-   private lateinit var vb: FragmentHomeBinding
-   private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var vb: FragmentHomeBinding
+    private val viewModel: MainViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -60,13 +60,13 @@ class HomeFragment : Fragment() {
 
         }
 
-            viewModel.getQuestions.observe(viewLifecycleOwner) { questionList ->
-                if (questionList != null && questionList.isNotEmpty()) {
-                    val action = HomeFragmentDirections
-                        .actionHomeFragmentToQuestionFragment(questionList.toTypedArray(), categoryList = viewModel.categories.value!!.toTypedArray())
-                    findNavController().navigate(action)
-                }
+        viewModel.getQuestions.observe(viewLifecycleOwner) { questionList ->
+            if (questionList != null && questionList.isNotEmpty()) {
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToQuestionFragment(questionList.toTypedArray(), categoryList = viewModel.categories.value!!.toTypedArray())
+                findNavController().navigate(action)
             }
+        }
 
         viewModel.randomQuizes.observe(viewLifecycleOwner) { randomQuizList ->
             if (randomQuizList != null && randomQuizList.isNotEmpty()) {
