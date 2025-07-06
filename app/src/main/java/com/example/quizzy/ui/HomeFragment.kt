@@ -5,6 +5,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -55,7 +56,7 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.categories.observe(viewLifecycleOwner) { quiz ->
-            vb.rvCategories.adapter = CategorieAdapter(database = quiz, viewModel)
+            vb.rvCategories.adapter = CategorieAdapter(database = quiz, viewModel, requireContext())
 
         }
 
@@ -75,9 +76,9 @@ class HomeFragment : Fragment() {
             }
         }
         vb.cvBtnRandomQuiz.setOnClickListener {
-            viewModel.getRandomQuizes()
+            viewModel.getRandomQuizes(context = requireContext())
         }
 
-        viewModel.getCategories()
+        viewModel.getCategories(context = requireContext())
     }
 }

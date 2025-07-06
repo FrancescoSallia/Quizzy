@@ -1,7 +1,9 @@
 package com.example.quizzy.viewModel
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +24,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // region Room-Database
     private val database = getDatabase(application)
     private val roomRepository = RoomRepository(database)
-
     val userList = roomRepository.userList
 
     fun insertUser(user: User) {
@@ -35,7 +36,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var currentIndex = 0
     var rightAnswerClicked = 0
     var counterForAnimation = 1
-
 
     private val _randomQuizes = MutableLiveData<List<Result>?>()
     val randomQuizes: LiveData<List<Result>?>
@@ -57,7 +57,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val currentIndexProgressivBar: LiveData<Int>
         get() = _currentIndexProgressivBar
 
-        fun getRandomQuizes() {
+        fun getRandomQuizes(context: Context) {
             viewModelScope.launch {
                 try {
                     val quizFromApi = OpenTriviaAPI.retrofitService.getRandomQuizes()
@@ -67,17 +67,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     _currentIndexProgressivBar.postValue(currentIndex)
                 } catch (e: Exception) {
                     Log.e("error", "fun getRandomQuizes(viewModel): ${e.message}")
+                    Toast.makeText(context,"${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
 
-        fun getCategories() {
+    fun getCategories(context: Context) {
             viewModelScope.launch {
                 try {
                     val categoriesFromApi = OpenTriviaAPI.retrofitService.getCategories()
                     _categories.postValue(categoriesFromApi.triviaCategories)
                 } catch (e: Exception) {
                     Log.e("error", "fun getCategories(viewModel): ${e.message}")
+                    Toast.makeText(context,"${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -88,8 +90,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         Log.d("debug", "In MainViewModel: getCategoryFromName() return ID: ${findCategory?.id}")
         return getCategoryDrawable(findCategory!!.id)
     }
-
-        fun getQuizQuestions(categorieInt: Int) {
+        fun getQuizQuestions(categorieInt: Int, context: Context) {
             viewModelScope.launch {
                 try {
                     val questionsObjectApi =
@@ -99,11 +100,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     _currentQuestion.postValue(questionsObjectApi.results[currentIndex])
                 } catch (e: Exception) {
                     Log.e("error", "fun getQuizQuestions(viewModel): ${e.message}")
+                    Toast.makeText(context,"${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
-
-
         fun showNextQuestion(navigateToCompletedFragment: () -> Unit) {
             _getQuestions.value?.let { questions ->
                 if (currentIndex + 1 < questions.size) {
@@ -124,6 +124,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _currentIndexProgressivBar.value = 0
         }
 
-
-    }
+}
 

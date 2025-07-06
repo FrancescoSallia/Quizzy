@@ -47,6 +47,7 @@ class QuestionFragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             //back button vom handy kann jetzt nicht wieder zurück navigieren!
+//            findNavController().navigateUp()
         }
 
         viewModel.currentQuestion.observe(viewLifecycleOwner) { currentQuestion ->

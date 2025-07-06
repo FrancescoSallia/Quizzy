@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.graphics.alpha
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -45,18 +47,31 @@ class ProgressFragment : Fragment() {
 
         viewModel.userList.observe(viewLifecycleOwner) { users ->
 
-            users.forEach { user ->
-                setupBarChart(
-                    correctAnswersList = user.rightAnswerList,
-                    wrongAnswersList = user.wrongAnswerList
-                )
-                showPercentage(
-                    correctAnswersList = user.rightAnswerList,
-                    wrongAnswersList = user.wrongAnswerList
-                )
-                vb.progressRightAnswerTotal.text = user.rightAnswerList.sum().toString()
-                vb.progressWrongAnswerTotal.text = user.wrongAnswerList.sum().toString()
+            if (!users.isNullOrEmpty()) {
+                vb.progressRightAnswerTotal.visibility = View.VISIBLE
+                vb.progressWrongAnswerTotal.visibility = View.VISIBLE
+                vb.progressPercentage.visibility = View.VISIBLE
+            } else {
+                vb.progressRightAnswerTotal.visibility = View.GONE
+                vb.progressWrongAnswerTotal.visibility = View.GONE
+                vb.progressPercentage.visibility = View.GONE
+                vb.btnResetProgress.isClickable = false
+                vb.btnResetProgress.setBackgroundColor(Color.GRAY)
             }
+
+                users.forEach { user ->
+                    setupBarChart(
+                        correctAnswersList = user.rightAnswerList,
+                        wrongAnswersList = user.wrongAnswerList
+                    )
+                    showPercentage(
+                        correctAnswersList = user.rightAnswerList,
+                        wrongAnswersList = user.wrongAnswerList
+                    )
+                    vb.progressRightAnswerTotal.text = user.rightAnswerList.sum().toString()
+                    vb.progressWrongAnswerTotal.text = user.wrongAnswerList.sum().toString()
+                }
+
         }
 
         vb.btnResetProgress.setOnClickListener {

@@ -18,7 +18,6 @@ import kotlin.getValue
 class CompleteFragment : Fragment() {
     private val args: CompleteFragmentArgs by navArgs()
     private val viewModel: MainViewModel by activityViewModels()
-
     private lateinit var vb: FragmentCompleteBinding
 
 

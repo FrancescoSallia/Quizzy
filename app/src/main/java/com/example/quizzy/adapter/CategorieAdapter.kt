@@ -1,5 +1,6 @@
 package com.example.quizzy.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,8 @@ import com.example.quizzy.viewModel.MainViewModel
 
 class CategorieAdapter(
     var database: List<TriviaCategory>,
-    val viewModel: MainViewModel
+    val viewModel: MainViewModel,
+    var context: Context
 
 ): RecyclerView.Adapter<CategorieAdapter.CategorieViewHolder>() {
     inner class CategorieViewHolder(val binding: CategoryItemBinding): RecyclerView.ViewHolder(binding.root)
@@ -41,7 +43,7 @@ class CategorieAdapter(
         }
 
         holder.binding.cvClickable.setOnClickListener {
-            viewModel.getQuizQuestions(quiz.id)
+            viewModel.getQuizQuestions(quiz.id, context = context)
         }
     }
 }
