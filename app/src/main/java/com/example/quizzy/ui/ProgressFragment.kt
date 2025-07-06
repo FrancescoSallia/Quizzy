@@ -52,7 +52,14 @@ class ProgressFragment : Fragment() {
                 vb.progressRightAnswerTotal.visibility = View.VISIBLE
                 vb.progressWrongAnswerTotal.visibility = View.VISIBLE
                 vb.progressPercentage.visibility = View.VISIBLE
-                vb.barChart.visibility = View.VISIBLE
+//                vb.barChart.visibility = View.VISIBLE
+                vb.btnResetProgress.setBackgroundColor(Color.RED)
+                vb.btnResetProgress.isClickable = true
+                vb.btnResetProgress.setOnClickListener {
+                    if (!viewModel.userList.value.isNullOrEmpty()) {
+                        showAlert()
+                    }
+                }
 
             } else {
                 vb.progressRightAnswerTotal.visibility = View.GONE
@@ -60,7 +67,7 @@ class ProgressFragment : Fragment() {
                 vb.progressPercentage.visibility = View.GONE
                 vb.btnResetProgress.isClickable = false
                 vb.btnResetProgress.setBackgroundColor(Color.GRAY)
-                vb.barChart.visibility = View.GONE
+//                vb.barChart.visibility = View.GONE
             }
 
                 users.forEach { user ->
@@ -77,11 +84,6 @@ class ProgressFragment : Fragment() {
                 }
         }
 
-        vb.btnResetProgress.setOnClickListener {
-            if (!viewModel.userList.value.isNullOrEmpty()) {
-                showAlert()
-            }
-        }
     }
     private fun showPercentage(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
         val totalCorrect = correctAnswersList.sum()
