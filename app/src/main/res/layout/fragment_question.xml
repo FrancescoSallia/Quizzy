@@ -296,8 +296,8 @@
 
     <ImageView
         android:id="@+id/iv_feedback"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:layout_marginStart="8dp"
         android:src="@drawable/wrong_item"
         app:layout_constraintBottom_toBottomOf="@+id/tv_feedback"
@@ -330,7 +330,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="11dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/atom"
+        android:src="@drawable/quizzy_logo_launch_removebg"
         android:tint="#ADE268"
         app:layout_constraintBottom_toTopOf="@+id/cardView4"
         app:layout_constraintEnd_toEndOf="parent"

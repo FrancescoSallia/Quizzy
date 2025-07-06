@@ -13,7 +13,7 @@
             android:id="@+id/action_homeFragment_to_questionFragment"
             app:destination="@id/questionFragment"
             app:enterAnim="@anim/slide_in_bottom"
-            app:exitAnim="@anim/slide_out_bottom" />
+            app:exitAnim="@anim/slide_out_top" />
         <action
             android:id="@+id/action_homeFragment_to_progressFragment"
             app:destination="@id/progressFragment" />
@@ -26,8 +26,8 @@
         <action
             android:id="@+id/action_questionFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right" />
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom" />
         <action
             android:id="@+id/action_questionFragment_to_completeFragment"
             app:destination="@id/completeFragment"
@@ -49,7 +49,7 @@
             android:id="@+id/action_completeFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_top"
-            app:exitAnim="@anim/slide_out_top"
+            app:exitAnim="@anim/slide_out_bottom"
             app:popUpTo="@id/questionFragment"
             app:popUpToInclusive="true" />
         <argument
