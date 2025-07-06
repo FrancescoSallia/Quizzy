@@ -56,8 +56,9 @@ class QuestionFragment : Fragment() {
         }
 
         viewModel.currentQuestion.observe(viewLifecycleOwner) { currentQuestion ->
+            // return@observe heißt:
+            //→ Beende nur diese anonyme Funktion, nicht die ganze onViewCreated()-Methode. Es verlässt nur diese funktion block macht mit dem rest weiter!
             if (currentQuestion == null) return@observe
-
 
             val answerList: MutableList<String> = currentQuestion.incorrectAnswers.toMutableList()
             answerList.add(currentQuestion.correctAnswer)
@@ -73,14 +74,6 @@ class QuestionFragment : Fragment() {
                 vb.ivCategoryItem.load(categoryItem)
 
             }
-
-
-
-
-//            vb.ivCategoryItem.load(currentQuestion.category)
-
-
-
 
             vb.tvDifficultyLevel.text = currentQuestion.difficulty
 

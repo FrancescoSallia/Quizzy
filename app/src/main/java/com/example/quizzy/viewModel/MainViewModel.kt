@@ -27,9 +27,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val roomRepository = RoomRepository(database)
     val userList = roomRepository.userList
 
-    fun insertUser(user: User) {
+    var currentUser = User(
+        id = 0,
+        rightAnswerList = emptyList(),
+        wrongAnswerList = emptyList()
+    )
+
+    fun insertUser(user: User, context: Context) {
         viewModelScope.launch {
-            roomRepository.insert(user)
+            roomRepository.insert(user, context)
+        }
+    }
+    fun deleteById(userId: Int, context: Context) {
+        viewModelScope.launch {
+            roomRepository.deleteUser(userId, context)
         }
     }
     //endregion

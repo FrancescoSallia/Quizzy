@@ -88,7 +88,9 @@ class CompleteFragment : Fragment() {
                     wrongAnswerList = updatedWrongAnswers.toList()
                 )
 
-                viewModel.insertUser(updatedUser) // <- ersetzt den bestehenden Eintrag (durch onConflict = OnConflictStrategy.REPLACE)
+                viewModel.currentUser = updatedUser
+
+                viewModel.insertUser(updatedUser, requireContext()) // <- ersetzt den bestehenden Eintrag (durch onConflict = OnConflictStrategy.REPLACE)
 
                 viewModel.rightAnswerClicked = 0
                 viewModel.resetGetQuestions()

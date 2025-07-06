@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.alpha
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.quizzy.R
@@ -46,17 +48,19 @@ class ProgressFragment : Fragment() {
         }
 
         viewModel.userList.observe(viewLifecycleOwner) { users ->
-
             if (!users.isNullOrEmpty()) {
                 vb.progressRightAnswerTotal.visibility = View.VISIBLE
                 vb.progressWrongAnswerTotal.visibility = View.VISIBLE
                 vb.progressPercentage.visibility = View.VISIBLE
+                vb.barChart.visibility = View.VISIBLE
+
             } else {
                 vb.progressRightAnswerTotal.visibility = View.GONE
                 vb.progressWrongAnswerTotal.visibility = View.GONE
                 vb.progressPercentage.visibility = View.GONE
                 vb.btnResetProgress.isClickable = false
                 vb.btnResetProgress.setBackgroundColor(Color.GRAY)
+                vb.barChart.visibility = View.GONE
             }
 
                 users.forEach { user ->
@@ -71,11 +75,12 @@ class ProgressFragment : Fragment() {
                     vb.progressRightAnswerTotal.text = user.rightAnswerList.sum().toString()
                     vb.progressWrongAnswerTotal.text = user.wrongAnswerList.sum().toString()
                 }
-
         }
 
         vb.btnResetProgress.setOnClickListener {
-            //TODO: Hier kommt die lösch alles vom User funktion(Room-Database)
+            if (!viewModel.userList.value.isNullOrEmpty()) {
+                showAlert()
+            }
         }
     }
     private fun showPercentage(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
@@ -133,5 +138,21 @@ class ProgressFragment : Fragment() {
             animateY(1000)
             invalidate()
         }
+    }
+
+    private fun showAlert() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Deine Daten zurücksetzen")
+            .setMessage("Möchtest du deine Daten wirklich zurücksetzen?")
+            .setPositiveButton("Löschen") { dialog, _ ->
+                viewModel.deleteById(viewModel.currentUser.id, requireContext())
+                findNavController().navigate(ProgressFragmentDirections.actionProgressFragmentToHomeFragment())
+                dialog.dismiss()
+            }
+            .setNegativeButton("Abbrechen") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 }
