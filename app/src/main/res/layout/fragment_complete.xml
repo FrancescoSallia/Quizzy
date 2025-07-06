@@ -9,28 +9,16 @@
     tools:context=".ui.CompleteFragment">
 
 
-    <ImageView
-            android:id="@+id/imageView21"
-            android:layout_width="253dp"
-            android:layout_height="204dp"
-            android:layout_marginBottom="32dp"
-            android:src="@drawable/completed1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginHorizontal="16dp"
         app:cardCornerRadius="7dp"
         app:cardElevation="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/iv_goal_gif">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -131,7 +119,7 @@
         android:id="@+id/btn_Done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/button_style"
         android:clickable="true"
         android:paddingHorizontal="100dp"
@@ -141,10 +129,10 @@
         android:shadowDy="0.5"
         android:shadowRadius="0.5"
         android:text="Abgeschlossen"
-        app:layout_constraintBottom_toTopOf="@+id/imageView21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView8"
@@ -174,5 +162,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView5" />
+
+    <ImageView
+        android:id="@+id/iv_goal_gif"
+        android:layout_width="197dp"
+        android:layout_height="126dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ziel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
