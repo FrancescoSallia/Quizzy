@@ -16,6 +16,7 @@ import com.example.quizzy.data.repository.getCategoryDrawable
 import com.example.quizzy.model.Result
 import com.example.quizzy.model.TriviaCategory
 import com.example.quizzy.model.User
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.apache.commons.text.StringEscapeUtils
 

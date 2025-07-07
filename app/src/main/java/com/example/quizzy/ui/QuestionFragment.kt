@@ -1,5 +1,6 @@
 package com.example.quizzy.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -48,6 +49,7 @@ class QuestionFragment : Fragment() {
 
         //Back button vom Handy um damit zurück zu navigieren
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+
             findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToHomeFragment())
             viewModel.rightAnswerClicked = 0
             viewModel.resetGetQuestions()
