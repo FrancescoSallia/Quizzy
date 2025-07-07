@@ -130,6 +130,9 @@ class QuestionFragment : Fragment() {
                     // Weitere Klicks sperren
                     cardViews.forEach { it.isEnabled = false }
 
+                    vb.tvFeedback.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.alpha_feedback_anim))
+                    vb.ivFeedback.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.alpha_feedback_anim))
+
                     vb.ivFeedback.visibility = View.VISIBLE
                     vb.tvFeedback.visibility = View.VISIBLE
 

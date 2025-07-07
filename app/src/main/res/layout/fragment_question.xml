@@ -94,14 +94,14 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:clickable="true"
         app:cardCornerRadius="6dp"
         app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+        app:layout_constraintTop_toBottomOf="@+id/tv_feedback">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -238,7 +238,7 @@
         android:id="@+id/btn_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button_style"
         android:clickable="true"
         android:paddingHorizontal="100dp"
@@ -250,7 +250,8 @@
         android:text="Continue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_answer_four_visibility" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -296,8 +297,8 @@
 
     <ImageView
         android:id="@+id/iv_feedback"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:src="@drawable/wrong_item"
         app:layout_constraintBottom_toBottomOf="@+id/tv_feedback"

@@ -33,15 +33,13 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="209dp"
-                android:layout_height="189dp"
-                android:layout_marginStart="300dp"
-                android:layout_marginBottom="264dp"
+                android:layout_width="123dp"
+                android:layout_height="146dp"
                 android:alpha="0.4"
                 android:elevation="5dp"
-                android:src="@drawable/elipse_bg"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:src="@drawable/option_bubble"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView11"
@@ -50,14 +48,14 @@
                 android:layout_marginTop="104dp"
                 android:src="@drawable/quizzy_logo"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/overlay" />
 
             <View
                 android:id="@+id/overlay"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:alpha="0"
                 android:background="#80000000"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -104,7 +102,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background"
-            android:paddingHorizontal="12dp"
             android:paddingBottom="25dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
