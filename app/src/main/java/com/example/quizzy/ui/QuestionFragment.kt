@@ -68,7 +68,7 @@ class QuestionFragment : Fragment() {
             //The Question
             vb.tvQuestion.text = viewModel.decodeText(currentQuestion.question)
             vb.tvCategoryTitle.text = viewModel.decodeText(currentQuestion.category)
-            val findCategory = args.categoryList.find { category -> category.name == currentQuestion.category }
+            val findCategory = args.categoryList.find { category -> viewModel.decodeText(category.name) == viewModel.decodeText(currentQuestion.category) }
 
             if (findCategory != null){
                 val categoryItem = viewModel.getCategoryFromName(findCategory.name)
