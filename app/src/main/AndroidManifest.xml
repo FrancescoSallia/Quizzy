@@ -16,6 +16,7 @@
         <activity
             android:name=".ui.SplashScreen.SplashActivity"
             android:theme="@style/Theme.Quizzy.Splash"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +27,7 @@
         <!-- MainActivity ohne Intent-Filter -->
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <meta-data
             android:name="preloaded_fonts"
