@@ -16,6 +16,7 @@ import com.example.quizzy.adapter.CategorieAdapter
 import com.example.quizzy.databinding.FragmentHomeBinding
 import com.example.quizzy.model.TriviaCategory
 import com.example.quizzy.viewModel.MainViewModel
+import org.apache.commons.text.StringEscapeUtils
 
 class HomeFragment : Fragment() {
 

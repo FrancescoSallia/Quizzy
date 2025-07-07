@@ -19,6 +19,7 @@ import com.example.quizzy.R
 import com.example.quizzy.data.repository.getCategoryDrawable
 import com.example.quizzy.databinding.FragmentQuestionBinding
 import com.example.quizzy.viewModel.MainViewModel
+import org.apache.commons.text.StringEscapeUtils
 
 class QuestionFragment : Fragment() {
     private lateinit var vb: FragmentQuestionBinding
@@ -65,8 +66,8 @@ class QuestionFragment : Fragment() {
             val shuffledAnswers = answerList.shuffled()
 
             //The Question
-            vb.tvQuestion.text = currentQuestion.question
-            vb.tvCategoryTitle.text = currentQuestion.category
+            vb.tvQuestion.text = viewModel.decodeText(currentQuestion.question)
+            vb.tvCategoryTitle.text = viewModel.decodeText(currentQuestion.category)
             val findCategory = args.categoryList.find { category -> category.name == currentQuestion.category }
 
             if (findCategory != null){

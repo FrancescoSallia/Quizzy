@@ -28,7 +28,6 @@ class ProgressFragment : Fragment() {
     private lateinit var vb: FragmentProgressBinding
     private val viewModel: MainViewModel by activityViewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,7 +51,6 @@ class ProgressFragment : Fragment() {
                 vb.progressRightAnswerTotal.visibility = View.VISIBLE
                 vb.progressWrongAnswerTotal.visibility = View.VISIBLE
                 vb.progressPercentage.visibility = View.VISIBLE
-//                vb.barChart.visibility = View.VISIBLE
                 vb.btnResetProgress.setBackgroundColor(Color.RED)
                 vb.btnResetProgress.isClickable = true
                 vb.btnResetProgress.setOnClickListener {
@@ -67,7 +65,6 @@ class ProgressFragment : Fragment() {
                 vb.progressPercentage.visibility = View.GONE
                 vb.btnResetProgress.isClickable = false
                 vb.btnResetProgress.setBackgroundColor(Color.GRAY)
-//                vb.barChart.visibility = View.GONE
             }
 
                 users.forEach { user ->
@@ -83,7 +80,6 @@ class ProgressFragment : Fragment() {
                     vb.progressWrongAnswerTotal.text = user.wrongAnswerList.sum().toString()
                 }
         }
-
     }
     private fun showPercentage(correctAnswersList: List<Int>, wrongAnswersList: List<Int>) {
         val totalCorrect = correctAnswersList.sum()

@@ -17,6 +17,7 @@ import com.example.quizzy.model.Result
 import com.example.quizzy.model.TriviaCategory
 import com.example.quizzy.model.User
 import kotlinx.coroutines.launch
+import org.apache.commons.text.StringEscapeUtils
 
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
@@ -135,13 +136,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _currentIndexProgressivBar.value = 0
         }
 
-    fun resetQuizState() {
-        _getQuestions.value = null
-        _randomQuizes.value = null
-        _currentIndexProgressivBar.value = 0
-        _currentQuestion.value = null
-        rightAnswerClicked = 0
-        counterForAnimation = 0
+    fun decodeText(text: String): String {
+        return StringEscapeUtils.unescapeHtml4(text)
     }
 
 }

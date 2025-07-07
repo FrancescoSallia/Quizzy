@@ -44,6 +44,9 @@ android {
 
 dependencies {
 
+    //Html decoder for (&amp, &qout etc.)
+    implementation("org.apache.commons:commons-text:1.13.1")
+
     //Glide (for Gif animation)
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
