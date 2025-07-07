@@ -103,7 +103,7 @@ class QuestionFragment : Fragment() {
             for (i in answerViews.indices) {
                 if (i < shuffledAnswers.size) {
                     answerViews[i].visibility = View.VISIBLE
-                    answerViews[i].text = shuffledAnswers[i]
+                    answerViews[i].text = viewModel.decodeText(shuffledAnswers[i])
                     cardViews[i].foreground = null
                     cardViews[i].isEnabled = true
                     cardViews[i].visibility = View.VISIBLE
@@ -121,7 +121,7 @@ class QuestionFragment : Fragment() {
             for (i in cardViews.indices) {
                 cardViews[i].setOnClickListener {
                     val selectedText = answerViews[i].text.toString()
-                    val correctAnswer = currentQuestion.correctAnswer
+                    val correctAnswer = viewModel.decodeText(currentQuestion.correctAnswer)
 
                     // Button aktivieren
                     vb.btnContinue.isEnabled = true

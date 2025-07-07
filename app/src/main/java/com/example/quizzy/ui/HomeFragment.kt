@@ -40,7 +40,6 @@ class HomeFragment : Fragment() {
             drawerLayout.openDrawer(GravityCompat.END)
         }
 
-
         val scrollView = vb.scrollView
         val overlay = view.findViewById<View>(R.id.overlay)
         val header = vb.headerLayout

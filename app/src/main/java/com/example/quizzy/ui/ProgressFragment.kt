@@ -65,6 +65,10 @@ class ProgressFragment : Fragment() {
                 vb.progressPercentage.visibility = View.GONE
                 vb.btnResetProgress.isClickable = false
                 vb.btnResetProgress.setBackgroundColor(Color.GRAY)
+
+                // 💡 BarChart zurücksetzen
+                vb.barChart.clear()
+                vb.barChart.invalidate()
             }
 
                 users.forEach { user ->
