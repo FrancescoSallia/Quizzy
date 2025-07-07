@@ -1,21 +1,19 @@
 package com.example.quizzy.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import coil.load
 import com.bumptech.glide.Glide
 import com.example.quizzy.R
 import com.example.quizzy.databinding.FragmentCompleteBinding
 import com.example.quizzy.model.User
 import com.example.quizzy.viewModel.MainViewModel
-import kotlin.getValue
 
 class CompleteFragment : Fragment() {
     private val args: CompleteFragmentArgs by navArgs()
@@ -38,6 +36,13 @@ class CompleteFragment : Fragment() {
         val questionsAmount = args.questionsAmount
         val wrongAnswers = questionsAmount - rightAnswers
 
+        val gif = vb.ivGoalGif
+
+        Glide.with(requireContext())
+            .asGif()
+            .load(R.drawable.ziel) // oder .load("https://example.com/my.gif")
+            .into(gif)
+
         vb.tvScoreResult.text = "${args.rightAnswers}/${args.questionsAmount}"
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
@@ -45,7 +50,6 @@ class CompleteFragment : Fragment() {
         }
 
         viewModel.userList.observe(viewLifecycleOwner) { users ->
-
             if (!users.isNullOrEmpty()) {
                 for (user in users) {
                     vb.tvTotalRightAnswers.text = (user.rightAnswerList.sum() + rightAnswers).toString()
@@ -56,15 +60,6 @@ class CompleteFragment : Fragment() {
                 vb.tvTotalWrongAnswers.text = wrongAnswers.toString()
             }
         }
-
-       val gif = vb.ivGoalGif
-
-        Glide.with(requireContext())
-            .asGif()
-            .load(R.drawable.ziel) // oder .load("https://example.com/my.gif")
-            .into(gif)
-
-
 
         vb.btnDone.setOnClickListener {
             val currentRightAnswers = rightAnswers

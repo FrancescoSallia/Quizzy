@@ -46,11 +46,8 @@ class QuestionFragment : Fragment() {
             vb.progressBar.progress = index + 1 // +1, weil Index bei 0 startet
         }
 
+        //Back button vom Handy um damit zurück zu navigieren
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            //back button vom handy kann jetzt nicht wieder zurück navigieren!
-//            findNavController().navigate(R.id.action_questionFragment_to_homeFragment)
-
-
             findNavController().navigate(QuestionFragmentDirections.actionQuestionFragmentToHomeFragment())
             viewModel.rightAnswerClicked = 0
             viewModel.resetGetQuestions()
