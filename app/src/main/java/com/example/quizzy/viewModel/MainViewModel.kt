@@ -13,6 +13,7 @@ import com.example.quizzy.data.OpenTriviaAPI
 import com.example.quizzy.data.local.RoomRepository
 import com.example.quizzy.data.local.getDatabase
 import com.example.quizzy.data.repository.getCategoryDrawable
+import com.example.quizzy.errorHandling.QuizErrorHandler
 import com.example.quizzy.model.Result
 import com.example.quizzy.model.TriviaCategory
 import com.example.quizzy.model.User
@@ -81,7 +82,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     _currentIndexProgressivBar.postValue(currentIndex)
                 } catch (e: Exception) {
                     Log.e("error", "fun getRandomQuizes(viewModel): ${e.message}")
-                    Toast.makeText(context,"${e.message}", Toast.LENGTH_LONG).show()
+                    val errorType = QuizErrorHandler.mapExceptionToErrorType(e)
+                    val errorMessage = QuizErrorHandler.getErrorMessage(context, errorType, customMessage = null)
+                    Toast.makeText(context,errorMessage, Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -93,7 +96,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     _categories.postValue(categoriesFromApi.triviaCategories)
                 } catch (e: Exception) {
                     Log.e("error", "fun getCategories(viewModel): ${e.message}")
-                    Toast.makeText(context,"${e.message}", Toast.LENGTH_LONG).show()
+                    val errorType = QuizErrorHandler.mapExceptionToErrorType(e)
+                    val errorMessage = QuizErrorHandler.getErrorMessage(context, errorType, customMessage = null)
+                    Toast.makeText(context,errorMessage, Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -114,7 +119,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     _currentQuestion.postValue(questionsObjectApi.results[currentIndex])
                 } catch (e: Exception) {
                     Log.e("error", "fun getQuizQuestions(viewModel): ${e.message}")
-                    Toast.makeText(context,"${e.message}", Toast.LENGTH_LONG).show()
+                    val errorType = QuizErrorHandler.mapExceptionToErrorType(e)
+                    val errorMessage = QuizErrorHandler.getErrorMessage(context, errorType, customMessage = null)
+                    Toast.makeText(context,errorMessage, Toast.LENGTH_LONG).show()
                 }
             }
         }
