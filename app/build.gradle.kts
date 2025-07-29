@@ -45,7 +45,7 @@ android {
 dependencies {
 
     //Html decoder for (&amp, &qout etc.)
-    implementation("org.apache.commons:commons-text:1.13.1")
+    implementation("org.apache.commons:commons-text:1.14.0")
 
     //Glide (for Gif animation)
     implementation ("com.github.bumptech.glide:glide:4.16.0")
@@ -66,7 +66,7 @@ dependencies {
     implementation(libs.coil)
 
     //Logger-interceptor
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.1.0")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
@@ -78,7 +78,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.4.0")
 
     //ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.2")
 
 
     implementation(libs.androidx.core.ktx)
